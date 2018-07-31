@@ -1,10 +1,12 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
-  entry: [
-    `${__dirname}/src/index.js`,
-  ],
+  entry: {
+    application: [path.resolve(__dirname, 'src/index.js')],
+    vendor: [path.resolve(__dirname, 'src/vendor.js')],
+  },
   externals: {
     gon: 'gon',
   },
@@ -12,7 +14,9 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   output: {
-    publicPath: '/assets/'
+    path: path.resolve(__dirname, 'assets'),
+    filename: '[name].js',
+    publicPath: '/assets/',
   },
   module: {
     rules: [
@@ -28,10 +32,10 @@ module.exports = {
     ],
   },
   // plugins: [
-    // new webpack.ProvidePlugin({
-    //   $: 'jquery',
-    //   jQuery: 'jquery',
-    //   'window.jQuery': 'jquery',
-    // }),
+  // new webpack.ProvidePlugin({
+  //   $: 'jquery',
+  //   jQuery: 'jquery',
+  //   'window.jQuery': 'jquery',
+  // }),
   // ],
 };
