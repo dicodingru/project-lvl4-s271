@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App 1`] = `
+<ul>
+  <li>
+    name
+  </li>
+  <li>
+    name
+  </li>
+</ul>
+`;
