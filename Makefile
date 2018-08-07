@@ -14,6 +14,9 @@ build:
 test:
 	npm test
 
+watch:
+	npm run test -- --watch
+
 check-types:
 	npm run flow
 
