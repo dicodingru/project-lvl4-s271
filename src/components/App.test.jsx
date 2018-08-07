@@ -8,7 +8,8 @@ test('App', () => {
         channels: [
           { id: 1, name: 'general', removable: false },
           { id: 2, name: 'random', removable: false }
-        ]
+        ],
+        messages: ['msg1', 'msg2']
       }}
     />
   );

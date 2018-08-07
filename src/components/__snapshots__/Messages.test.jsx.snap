@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Messages component should match snapshot 1`] = `
+<div>
+  <div>
+    <span>
+      msg1
+    </span>
+  </div>
+  <div>
+    <span>
+      msg2
+    </span>
+  </div>
+  <form>
+    <input
+      type="text"
+    />
+    <button
+      type="submit"
+    >
+      Send
+    </button>
+  </form>
+</div>
+`;

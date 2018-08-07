@@ -1,10 +1,12 @@
 import React from 'react';
-import ChannelsContainer from '../containers/ChannelsContainer';
+import ChannelsListContainer from '../containers/ChannelsListContainer';
+import MessagesContainer from '../containers/MessagesContainer';
 
 const Root = () => (
-    <React.Fragment>
-      <ChannelsContainer />
-    </React.Fragment>
-  );
+  <React.Fragment>
+    <ChannelsListContainer />
+    <MessagesContainer />
+  </React.Fragment>
+);
 
 export default Root;
