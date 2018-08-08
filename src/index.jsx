@@ -13,8 +13,4 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-/* eslint-disable react/jsx-filename-extension */
-ReactDOM.render(
-  <App initialState={window.gon} />,
-  document.getElementById('chat')
-);
+ReactDOM.render(<App initialState={gon} />, document.getElementById('chat'));

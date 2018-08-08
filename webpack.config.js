@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
-  entry: [path.resolve(__dirname, 'src/index.js')],
+  entry: [path.resolve(__dirname, 'src/index.jsx')],
   externals: {
     gon: 'gon'
   },
