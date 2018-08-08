@@ -1,10 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import NewMessageForm from './NewMessageForm';
+import NewMessageForm from '../src/components/NewMessageForm';
 
 describe('NewMessageForm component', () => {
   let component;
-  const messages = ['msg1', 'msg2'];
 
   beforeEach(() => {
     component = mount(<NewMessageForm />);

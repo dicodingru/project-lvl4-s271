@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ChannelsList from './ChannelsList';
+import ChannelsList from '../src/components/ChannelsList';
 
 describe('ChannelsList component', () => {
   let component;

@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Message from './Message';
+import Message from '../src/components/Message';
 
 describe('Message component', () => {
   let component;

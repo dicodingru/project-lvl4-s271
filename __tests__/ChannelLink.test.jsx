@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ChannelLink from './ChannelLink';
+import ChannelLink from '../src/components/ChannelLink';
 
 describe('ChannelLink component', () => {
   let component;
