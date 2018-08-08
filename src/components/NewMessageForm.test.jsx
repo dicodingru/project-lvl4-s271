@@ -7,7 +7,7 @@ describe('NewMessageForm component', () => {
   const messages = ['msg1', 'msg2'];
 
   beforeEach(() => {
-    component = shallow(<NewMessageForm />);
+    component = mount(<NewMessageForm />);
   });
 
   test('should render successfully', () => {

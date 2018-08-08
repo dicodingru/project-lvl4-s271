@@ -1,14 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NewMessageForm component should match snapshot 1`] = `
-<form>
-  <input
-    type="text"
-  />
-  <button
-    type="submit"
+<div
+  className="sc-bdVaJa UoSJW"
+>
+  <form
+    className="sc-bwzfXH uTxCW"
   >
-    Send
-  </button>
-</form>
+    <input
+      className="sc-htpNat jOwwja"
+      type="text"
+    />
+    <button
+      className="sc-bxivhb lbRlRl"
+      type="submit"
+    >
+      Send
+    </button>
+  </form>
+</div>
 `;

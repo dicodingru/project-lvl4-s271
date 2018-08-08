@@ -1,20 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App 1`] = `
-<div>
-  <a
-    href="#general"
+<div
+  class="sc-gzVnrw kSwFRd"
+>
+  <div
+    class="sc-bwzfXH jxfKnz"
   >
-    <span>
-      general
-    </span>
-  </a>
-  <a
-    href="#random"
+    <div
+      class="sc-bdVaJa jWKkjw"
+    >
+      <a
+        href="#general"
+      >
+        <span>
+          general
+        </span>
+      </a>
+    </div>
+    <div
+      class="sc-bdVaJa jWKkjw"
+    >
+      <a
+        href="#random"
+      >
+        <span>
+          random
+        </span>
+      </a>
+    </div>
+  </div>
+  <div
+    class="sc-bZQynM jWOpbX"
   >
-    <span>
-      random
-    </span>
-  </a>
+    <div>
+      <span>
+        msg1
+      </span>
+    </div>
+    <div>
+      <span>
+        msg2
+      </span>
+    </div>
+    <div
+      class="sc-htpNat daVAfG"
+    >
+      <form
+        class="sc-bxivhb bUZGRr"
+      >
+        <input
+          class="sc-ifAKCX jkqzbQ"
+          type="text"
+        />
+        <button
+          class="sc-EHOje dObCnd"
+          type="submit"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
 `;

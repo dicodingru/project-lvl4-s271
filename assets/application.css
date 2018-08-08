@@ -1,3 +1,11 @@
 .fade.in {
   opacity: 1;
 }
+
+body {
+  height: 85vh;
+}
+
+.container, #chat {
+  height: 100%;
+}

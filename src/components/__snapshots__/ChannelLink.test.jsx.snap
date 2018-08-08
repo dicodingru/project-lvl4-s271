@@ -1,11 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChannelLink component should match snapshot 1`] = `
-<a
-  href="#general"
+<div
+  className="sc-bdVaJa jWKkjw"
 >
-  <span>
-    general
-  </span>
-</a>
+  <a
+    href="#general"
+  >
+    <span>
+      general
+    </span>
+  </a>
+</div>
 `;

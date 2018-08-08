@@ -1,20 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChannelsList component should match snapshot 1`] = `
-<div>
-  <a
-    href="#general"
+<div
+  className="sc-bwzfXH jxfKnz"
+>
+  <div
+    className="sc-bdVaJa jWKkjw"
   >
-    <span>
-      general
-    </span>
-  </a>
-  <a
-    href="#random"
+    <a
+      href="#general"
+    >
+      <span>
+        general
+      </span>
+    </a>
+  </div>
+  <div
+    className="sc-bdVaJa jWKkjw"
   >
-    <span>
-      random
-    </span>
-  </a>
+    <a
+      href="#random"
+    >
+      <span>
+        random
+      </span>
+    </a>
+  </div>
 </div>
 `;
