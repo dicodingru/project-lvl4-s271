@@ -3,10 +3,7 @@ const path = require('path');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
-  entry: {
-    application: [path.resolve(__dirname, 'src/index.js')],
-    vendor: [path.resolve(__dirname, 'src/vendor.js')]
-  },
+  entry: [path.resolve(__dirname, 'src/index.js')],
   externals: {
     gon: 'gon'
   },
@@ -15,7 +12,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'assets'),
-    filename: '[name].js',
+    filename: 'application.js',
+    chunkFilename: '[name].js',
     publicPath: '/assets/'
   },
   module: {
@@ -30,6 +28,17 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'all',
+          test: /node_modules/,
+          name: 'vendor'
+        }
+      }
+    }
   }
   // plugins: [
   // new webpack.ProvidePlugin({
