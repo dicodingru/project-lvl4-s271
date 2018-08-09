@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Message component should match snapshot 1`] = `
-<div>
-  <span>
-    message text
-  </span>
-</div>
-`;
