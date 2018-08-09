@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChannelsListContainer from '../containers/ChannelsListContainer';
-import MessagesContainer from '../containers/MessagesContainer';
+import ChannelsList from './ChannelsList';
+import Messages from './Messages';
 
 const Div = styled.div`
   display: flex;
@@ -13,8 +13,8 @@ const Div = styled.div`
 
 const Root = () => (
   <Div>
-    <ChannelsListContainer />
-    <MessagesContainer />
+    <ChannelsList />
+    <Messages />
   </Div>
 );
 

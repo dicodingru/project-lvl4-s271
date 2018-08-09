@@ -1,7 +1,7 @@
 {
-  "presets": [
-    "@babel/env",
-    "@babel/react",
-    ["@babel/preset-stage-0", { "decoratorsLegacy": true }]
-  ]
+  presets: ['@babel/env', '@babel/react'],
+  plugins: [
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    ['@babel/plugin-proposal-class-properties'],
+  ],
 }

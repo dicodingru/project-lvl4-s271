@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import styled from 'styled-components';
 import Message from './Message';
@@ -11,18 +12,26 @@ const Div = styled.div`
   justify-content: flex-end;
 `;
 
-const Messages = (props) => {
-  const { messages } = props;
-  return (
-    <Div>
-      {messages.map((item) => <Message key={_.uniqueId()} text={item} />)}
-      <NewMessageForm />
-    </Div>
-  );
+const mapStateToProps = (state) => {
+  const props = {
+    messages: state.messages
+  };
+  return props;
 };
 
-Messages.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.string).isRequired
-};
+@connect(mapStateToProps)
+export default class Messages extends Component {
+  static propTypes = {
+    messages: PropTypes.arrayOf(PropTypes.string).isRequired
+  };
 
-export default Messages;
+  render() {
+    const { messages } = this.props;
+    return (
+      <Div>
+        {messages.map((item) => <Message key={_.uniqueId()} text={item} />)}
+        <NewMessageForm />
+      </Div>
+    );
+  }
+}
