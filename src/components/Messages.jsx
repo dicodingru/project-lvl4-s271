@@ -22,14 +22,25 @@ const mapStateToProps = (state) => {
 @connect(mapStateToProps)
 export default class Messages extends Component {
   static propTypes = {
-    messages: PropTypes.arrayOf(PropTypes.string).isRequired
+    messages: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        channelId: PropTypes.number,
+        username: PropTypes.string,
+        text: PropTypes.string
+      })
+    )
+  };
+
+  static defaultProps = {
+    messages: []
   };
 
   render() {
     const { messages } = this.props;
     return (
       <Div>
-        {messages.map((item) => <Message key={_.uniqueId()} text={item} />)}
+        {messages.map((item) => <Message key={_.uniqueId()} message={item} />)}
         <NewMessageForm />
       </Div>
     );

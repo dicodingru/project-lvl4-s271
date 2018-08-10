@@ -11,7 +11,7 @@ export default (router, io) => {
       { id: generalChannelId, name: 'general', removable: false },
       { id: randomChannelId, name: 'random', removable: false }
     ],
-    messages: ['msg1', 'msg2'],
+    messages: [],
     currentChannelId: generalChannelId
   };
 

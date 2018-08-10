@@ -35,12 +35,12 @@ exports[`App 1`] = `
   >
     <div>
       <span>
-        msg1
+        message1
       </span>
     </div>
     <div>
       <span>
-        msg2
+        message2
       </span>
     </div>
     <div

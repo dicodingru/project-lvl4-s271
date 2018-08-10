@@ -9,7 +9,10 @@ test('App', () => {
           { id: 1, name: 'general', removable: false },
           { id: 2, name: 'random', removable: false }
         ],
-        messages: ['msg1', 'msg2']
+        messages: [
+          {id: 1, channelId: 1, username: 'user1', text: 'message1'},
+          {id: 2, channelId: 1, username: 'user2', text: 'message2'}
+        ]
       }}
     />
   );
