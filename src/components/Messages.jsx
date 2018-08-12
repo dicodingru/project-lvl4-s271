@@ -7,7 +7,8 @@ import NewMessageForm from './NewMessageForm';
 const mapStateToProps = (state) => {
   const props = {
     messages: state.messages,
-    username: state.username
+    username: state.username,
+    currentChannelId: state.currentChannelId
   };
   return props;
 };
@@ -23,7 +24,8 @@ export default class Messages extends Component {
         text: PropTypes.string
       })
     ),
-    username: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired,
+    currentChannelId: PropTypes.number.isRequired
   };
 
   static defaultProps = {
@@ -31,11 +33,14 @@ export default class Messages extends Component {
   };
 
   render() {
-    const { messages, username } = this.props;
+    const { messages, username, currentChannelId } = this.props;
     return (
       <div className="p-3 col-10 h-100 d-flex flex-column justify-content-end align-items-stretch">
         <MessagesList messages={messages} />
-        <NewMessageForm username={username} />
+        <NewMessageForm
+          username={username}
+          currentChannelId={currentChannelId}
+        />
       </div>
     );
   }

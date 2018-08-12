@@ -4,7 +4,8 @@ import axios from 'axios';
 
 class NewMessageForm extends Component {
   static propTypes = {
-    username: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired,
+    currentChannelId: PropTypes.number.isRequired
   };
 
   state = {
@@ -17,9 +18,9 @@ class NewMessageForm extends Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    const { username } = this.props;
+    const { username, currentChannelId } = this.props;
     const { text } = this.state;
     const data = {
       attributes: {
@@ -27,9 +28,8 @@ class NewMessageForm extends Component {
         text
       }
     };
-    axios
-      .post('/api/v1/channels/:channelId/messages', { data })
-      .then(this.setState({ text: '' }));
+    await axios.post(`/api/v1/channels/${currentChannelId}/messages`, { data });
+    this.setState({ text: '' });
   };
 
   render() {
