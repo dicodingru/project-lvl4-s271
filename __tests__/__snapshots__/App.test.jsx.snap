@@ -54,6 +54,7 @@ exports[`App 1`] = `
         <input
           class="col-8 form-control"
           type="text"
+          value=""
         />
         <button
           class="col-3 btn btn-primary"

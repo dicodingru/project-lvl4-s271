@@ -20,7 +20,8 @@ test('Store', () => {
   expect(store.getState()).toEqual({
     channels: [],
     messages: [],
-    currentChannelId: null
+    currentChannelId: null,
+    username: null
   });
 
   const channel1 = buildChannel(1, 'general');
@@ -28,7 +29,8 @@ test('Store', () => {
   expect(store.getState()).toEqual({
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [],
-    currentChannelId: 1
+    currentChannelId: 1,
+    username: null
   });
 
   const message1 = buildMessage(1, 1, 'user1');
@@ -36,7 +38,8 @@ test('Store', () => {
   expect(store.getState()).toEqual({
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [message1],
-    currentChannelId: 1
+    currentChannelId: 1,
+    username: null
   });
 
   const message2 = buildMessage(2, 1, 'user2');
@@ -44,6 +47,7 @@ test('Store', () => {
   expect(store.getState()).toEqual({
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [message1, message2],
-    currentChannelId: 1
+    currentChannelId: 1,
+    username: null
   });
 });

@@ -29,6 +29,13 @@ const currentChannelId = handleActions(
   null
 );
 
-const rootReducer = combineReducers({ channels, messages, currentChannelId });
+const username = handleActions({}, null);
+
+const rootReducer = combineReducers({
+  channels,
+  messages,
+  currentChannelId,
+  username
+});
 
 export default rootReducer;
