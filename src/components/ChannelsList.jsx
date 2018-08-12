@@ -21,11 +21,7 @@ export default class ChannelsList extends Component {
         removable: PropTypes.bool
       })
     ).isRequired,
-    currentChannelId: PropTypes.number
-  };
-
-  static defaultProps = {
-    currentChannelId: null
+    currentChannelId: PropTypes.number.isRequired
   };
 
   render() {

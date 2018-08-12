@@ -12,10 +12,10 @@ const Message = (props) => {
 
 Message.propTypes = {
   message: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    channelId: PropTypes.number.isRequired,
-    username: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired
+    id: PropTypes.number,
+    channelId: PropTypes.number,
+    username: PropTypes.string,
+    text: PropTypes.string
   }).isRequired
 };
 

@@ -33,7 +33,8 @@ const App = ({ initialState, socket }) => {
 App.propTypes = {
   initialState: PropTypes.shape({
     channels: PropTypes.array,
-    messages: PropTypes.array
+    messages: PropTypes.array,
+    currentChannelId: PropTypes.number
   }).isRequired,
   socket: PropTypes.instanceOf(Socket).isRequired
 };
