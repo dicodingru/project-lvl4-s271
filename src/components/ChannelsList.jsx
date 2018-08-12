@@ -20,15 +20,26 @@ export default class ChannelsList extends Component {
         name: PropTypes.string,
         removable: PropTypes.bool
       })
-    ).isRequired
+    ).isRequired,
+    currentChannelId: PropTypes.number
+  };
+
+  static defaultProps = {
+    currentChannelId: null
   };
 
   render() {
-    const { channels } = this.props;
+    const { channels, currentChannelId } = this.props;
     return (
       <div className="col-2 h-100 d-flex flex-column justify-content-start align-items-center">
         <div className="list-group">
-          {channels.map(({ id, name }) => <ChannelLink key={id} name={name} />)}
+          {channels.map(({ id, name }) => (
+            <ChannelLink
+              key={id}
+              name={name}
+              isActive={id === currentChannelId}
+            />
+          ))}
         </div>
       </div>
     );
