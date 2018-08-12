@@ -3,9 +3,9 @@
 }
 
 body {
-  height: 85vh;
+  height: 90vh;
 }
 
-.container, #chat {
+.container-fluid, #chat {
   height: 100%;
 }

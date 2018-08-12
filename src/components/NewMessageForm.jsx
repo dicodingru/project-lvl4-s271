@@ -1,27 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const Div = styled.div`
-  width: 100%;
-`;
-
-const Form = styled.form``;
-
-const Input = styled.input`
-  width: 90%;
-`;
-
-const Button = styled.button`
-  width: 10%;
-`;
 
 const NewMessageForm = () => (
-  <Div>
-    <Form>
-      <Input type="text" />
-      <Button type="submit">Send</Button>
-    </Form>
-  </Div>
+  <form className="">
+    <div className="p-2 form-row d-flex flex-row justify-content-between">
+      <input className="col-8 form-control" type="text" />
+      <button className="col-3 btn btn-primary" type="submit">
+        Send
+      </button>
+    </div>
+  </form>
 );
 
 export default NewMessageForm;
