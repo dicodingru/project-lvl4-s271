@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Socket } from 'socket.io-client';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { addMessage } from '../actions';
@@ -34,7 +35,7 @@ App.propTypes = {
     channels: PropTypes.array,
     messages: PropTypes.array
   }).isRequired,
-  socket: PropTypes.instanceOf(WebSocket).isRequired
+  socket: PropTypes.instanceOf(Socket).isRequired
 };
 
 export default App;
