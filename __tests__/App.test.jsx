@@ -12,7 +12,8 @@ test('App', () => {
       { id: 1, channelId: 1, username: 'user1', text: 'message1' },
       { id: 2, channelId: 1, username: 'user2', text: 'message2' }
     ],
-    username: 'Test User'
+    username: 'Test User',
+    currentChannelId: 1
   };
   const socket = io();
 
