@@ -6,7 +6,7 @@ import '../assets/application.css';
 import findName from 'faker/lib/name';
 import cookies from 'js-cookie';
 
-// import gon from 'gon';
+import gon from 'gon';
 // import io from 'socket.io-client';
 import App from './components/App';
 
@@ -17,4 +17,10 @@ if (process.env.NODE_ENV !== 'production') {
 const username = cookies.get('name') || findName();
 cookies.set('name', username);
 
-ReactDOM.render(<App initialState={gon} />, document.getElementById('chat'));
+const { channels, messages, currentChannelId } = gon;
+const initialState = { channels, messages, currentChannelId, username };
+
+ReactDOM.render(
+  <App initialState={initialState} />,
+  document.getElementById('chat')
+);
