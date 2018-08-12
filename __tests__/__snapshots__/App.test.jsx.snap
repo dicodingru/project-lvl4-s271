@@ -2,26 +2,24 @@
 
 exports[`App 1`] = `
 <div
-  class="sc-gzVnrw kSwFRd"
+  class="p-3 h-100 row"
 >
   <div
-    class="sc-bwzfXH jxfKnz"
+    class="col-2 h-100 d-flex flex-column justify-content-start align-items-center"
   >
     <div
-      class="sc-bdVaJa jWKkjw"
+      class="list-group"
     >
       <a
+        class="list-group-item"
         href="#general"
       >
         <span>
           general
         </span>
       </a>
-    </div>
-    <div
-      class="sc-bdVaJa jWKkjw"
-    >
       <a
+        class="list-group-item"
         href="#random"
       >
         <span>
@@ -31,36 +29,40 @@ exports[`App 1`] = `
     </div>
   </div>
   <div
-    class="sc-bZQynM jWOpbX"
+    class="p-3 col-10 h-100 d-flex flex-column justify-content-end align-items-stretch"
   >
-    <div>
-      <span>
-        message1
-      </span>
-    </div>
-    <div>
-      <span>
-        message2
-      </span>
-    </div>
     <div
-      class="sc-htpNat daVAfG"
+      class=""
     >
-      <form
-        class="sc-bxivhb bUZGRr"
+      <div>
+        <span>
+          message1
+        </span>
+      </div>
+      <div>
+        <span>
+          message2
+        </span>
+      </div>
+    </div>
+    <form
+      class=""
+    >
+      <div
+        class="p-2 form-row d-flex flex-row justify-content-between"
       >
         <input
-          class="sc-ifAKCX jkqzbQ"
+          class="col-8 form-control"
           type="text"
         />
         <button
-          class="sc-EHOje dObCnd"
+          class="col-3 btn btn-primary"
           type="submit"
         >
           Send
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </div>
 `;
