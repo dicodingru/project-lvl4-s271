@@ -1,27 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import faker from 'faker';
 import cookies from 'js-cookie';
 import gon from 'gon';
 import io from 'socket.io-client';
 
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
-import App from './components/App';
+import getApp from './App';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
+/* eslint-disable no-underscore-dangle */
+const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__;
+/* eslint-enable */
+
 const username = faker.name.findName();
 cookies.set('name', username);
-
-const socket = io();
 
 const { channels, messages, currentChannelId } = gon;
 const initialState = { channels, messages, currentChannelId, username };
 
-ReactDOM.render(
-  <App initialState={initialState} socket={socket} />,
-  document.getElementById('chat')
+const store = createStore(
+  rootReducer,
+  initialState,
+  reduxDevtools && reduxDevtools()
 );
+
+const socket = io();
+
+getApp(store, socket);
