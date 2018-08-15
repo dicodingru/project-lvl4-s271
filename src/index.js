@@ -9,6 +9,7 @@ import rootReducer from './reducers';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
 import getApp from './App';
+import addListeners from './socket';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -32,4 +33,5 @@ const store = createStore(
 
 const socket = io();
 
-getApp(store, socket);
+addListeners(socket, store);
+getApp(store);
