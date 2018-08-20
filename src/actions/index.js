@@ -1,17 +1,36 @@
 import { createAction } from 'redux-actions';
+import axios from 'axios';
+import routes from '../routes';
 
 export const addChannel = createAction('CHANNEL_ADD');
 export const addMessage = createAction('MESSAGE_ADD');
-export const sendMessage = createAction('MESSAGE_SEND');
-export const receiveMessage = createAction('MESSAGE_RECEIVE');
-export const throwSendingError = createAction('ERROR_THROW');
-export const resetSendingError = createAction('ERROR_RESET');
+
+export const sendMessageNone = createAction('MESSAGE_SEND_NONE');
+export const sendMessageRequest = createAction('MESSAGE_SEND_REQUEST');
+export const sendMessageSuccess = createAction('MESSAGE_SEND_SUCCESS');
+export const sendMessageFailure = createAction('MESSAGE_SEND_FAILURE');
+
+export const sendMessage = (data, currentChannelId, reset) => async (dispatch) => {
+  dispatch(sendMessageRequest());
+  try {
+    const url = routes.messagesUrl(currentChannelId);
+    await axios.post(url, { data });
+    dispatch(sendMessageSuccess());
+    reset();
+  } catch (e) {
+    dispatch(sendMessageFailure());
+    setTimeout(() => {
+      dispatch(sendMessageNone());
+    }, 3000);
+  }
+};
 
 export default {
   addChannel,
   addMessage,
-  sendMessage,
-  receiveMessage,
-  throwSendingError,
-  resetSendingError
+  sendMessageRequest,
+  sendMessageSuccess,
+  sendMessageFailure,
+  sendMessageNone,
+  sendMessage
 };

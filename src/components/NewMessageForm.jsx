@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import axios from 'axios';
 import actionCreators from '../actions';
 
 const Error = () => (
@@ -13,9 +12,8 @@ const Error = () => (
 
 const mapStateToProps = (state) => {
   const props = {
-    isSending: state.isSending,
-    isError: state.isError,
-    currentChannelId: state.currentChannelId
+    currentChannelId: state.currentChannelId,
+    messageSendingState: state.messageSendingState
   };
   return props;
 };
@@ -26,45 +24,27 @@ class NewMessageForm extends Component {
   static propTypes = {
     username: PropTypes.string.isRequired,
     currentChannelId: PropTypes.number.isRequired,
+    messageSendingState: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    isSending: PropTypes.bool.isRequired,
-    isError: PropTypes.bool.isRequired
+    reset: PropTypes.func.isRequired,
+    sendMessage: PropTypes.func.isRequired
   };
 
-  send = async (values) => {
-    const {
-      username,
-      currentChannelId,
-      reset,
-      sendMessage,
-      receiveMessage,
-      throwSendingError,
-      resetSendingError
-    } = this.props;
-    const { text } = values;
+  send = ({ text }) => {
+    const { username, currentChannelId, sendMessage, reset } = this.props;
     const data = {
       attributes: {
         username,
         text
       }
     };
-    try {
-      sendMessage();
-      await axios.post(`/api/v1/channels/${currentChannelId}/messages`, {
-        data
-      });
-      receiveMessage();
-      reset();
-    } catch (err) {
-      throwSendingError();
-      setTimeout(() => {
-        resetSendingError();
-      }, 3000);
-    }
+    sendMessage(data, currentChannelId, reset);
   };
 
   render() {
-    const { handleSubmit, isSending, isError } = this.props;
+    const { handleSubmit, messageSendingState } = this.props;
+    const disabled = messageSendingState === 'requested';
+    const isError = messageSendingState === 'failed';
     return (
       <form onSubmit={handleSubmit(this.send)}>
         {isError && <Error />}
@@ -79,7 +59,7 @@ class NewMessageForm extends Component {
             />
           </div>
           <div className="col-3">
-            <button className="btn btn-primary" type="submit" disabled={isSending}>
+            <button className="btn btn-primary" type="submit" disabled={disabled}>
               Send
             </button>
           </div>
