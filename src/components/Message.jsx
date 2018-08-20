@@ -5,7 +5,7 @@ const Message = (props) => {
   const { message } = props;
   return (
     <div>
-      <span>{message.text}</span>
+      {message.username}: <span>{message.text}</span>
     </div>
   );
 };

@@ -14,7 +14,6 @@ MessagesList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number,
       channelId: PropTypes.number,
-      username: PropTypes.string,
       text: PropTypes.string
     })
   ).isRequired

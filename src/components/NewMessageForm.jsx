@@ -15,7 +15,6 @@ const mapStateToProps = (state) => {
   const props = {
     isSending: state.isSending,
     isError: state.isError,
-    username: state.username,
     currentChannelId: state.currentChannelId
   };
   return props;

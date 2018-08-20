@@ -28,7 +28,6 @@ test('Store', () => {
     channels: [],
     messages: [],
     currentChannelId: null,
-    username: null,
     form: {},
     isSending: false,
     isError: false
@@ -40,7 +39,6 @@ test('Store', () => {
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [],
     currentChannelId: 1,
-    username: null,
     form: {},
     isSending: false,
     isError: false
@@ -52,7 +50,6 @@ test('Store', () => {
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [message1],
     currentChannelId: 1,
-    username: null,
     form: {},
     isSending: false,
     isError: false
@@ -64,7 +61,6 @@ test('Store', () => {
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [message1, message2],
     currentChannelId: 1,
-    username: null,
     form: {},
     isSending: false,
     isError: false
