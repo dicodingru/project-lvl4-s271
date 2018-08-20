@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import * as actions from '../actions';
 
 const channels = handleActions(
@@ -31,11 +32,41 @@ const currentChannelId = handleActions(
 
 const username = handleActions({}, null);
 
+const isSending = handleActions(
+  {
+    [actions.sendMessage]() {
+      return true;
+    },
+    [actions.receiveMessage]() {
+      return false;
+    },
+    [actions.resetSendingError]() {
+      return false;
+    }
+  },
+  false
+);
+
+const isError = handleActions(
+  {
+    [actions.throwSendingError]() {
+      return true;
+    },
+    [actions.resetSendingError]() {
+      return false;
+    }
+  },
+  false
+);
+
 const rootReducer = combineReducers({
   channels,
   messages,
   currentChannelId,
-  username
+  username,
+  isSending,
+  isError,
+  form: formReducer
 });
 
 export default rootReducer;

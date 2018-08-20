@@ -45,23 +45,31 @@ exports[`App 1`] = `
         </span>
       </div>
     </div>
-    <form
-      class=""
-    >
+    <form>
       <div
-        class="p-2 form-row d-flex flex-row justify-content-between"
+        class="form-row"
       >
-        <input
-          class="col-8 form-control"
-          type="text"
-          value=""
-        />
-        <button
-          class="col-3 btn btn-primary"
-          type="submit"
+        <div
+          class="col-9"
         >
-          Send
-        </button>
+          <input
+            class="form-control"
+            name="text"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="col-3"
+        >
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Send
+          </button>
+        </div>
       </div>
     </form>
   </div>
