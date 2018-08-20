@@ -1,14 +1,15 @@
-import faker from 'faker';
+import faker from 'faker/locale/en';
 import cookies from 'js-cookie';
 import gon from 'gon';
 import io from 'socket.io-client';
-import thunk from 'redux-thunk';
 
 import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
+
 import getApp from './App';
 import addListeners from './socket';
 
@@ -29,7 +30,8 @@ const initialState = { channels, messages, currentChannelId };
 const store = createStore(
   rootReducer,
   initialState,
-  compose(applyMiddleware(thunk), reduxDevtools && reduxDevtools())
+  (reduxDevtools && compose(applyMiddleware(thunk), reduxDevtools())) ||
+    applyMiddleware(thunk)
 );
 
 const socket = io();
