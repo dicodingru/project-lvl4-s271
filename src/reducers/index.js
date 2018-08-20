@@ -30,39 +30,29 @@ const currentChannelId = handleActions(
   null
 );
 
-const isSending = handleActions(
+const messageSendingState = handleActions(
   {
-    [actions.sendMessage]() {
-      return true;
+    [actions.sendMessageNone]() {
+      return 'none';
     },
-    [actions.receiveMessage]() {
-      return false;
+    [actions.sendMessageRequest]() {
+      return 'requested';
     },
-    [actions.resetSendingError]() {
-      return false;
+    [actions.sendMessageSuccess]() {
+      return 'successed';
+    },
+    [actions.sendMessageFailure]() {
+      return 'failed';
     }
   },
-  false
-);
-
-const isError = handleActions(
-  {
-    [actions.throwSendingError]() {
-      return true;
-    },
-    [actions.resetSendingError]() {
-      return false;
-    }
-  },
-  false
+  'none'
 );
 
 const rootReducer = combineReducers({
   channels,
   messages,
   currentChannelId,
-  isSending,
-  isError,
+  messageSendingState,
   form: formReducer
 });
 

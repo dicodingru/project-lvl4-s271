@@ -1,13 +1,6 @@
 import { createStore } from 'redux';
 import reducers from '../src/reducers';
-import {
-  addChannel,
-  addMessage,
-  sendMessage,
-  receiveMessage,
-  throwSendingError,
-  resetSendingError
-} from '../src/actions';
+import * as actions from '../src/actions';
 
 const buildChannel = (id, name) => ({
   id,
@@ -29,55 +22,48 @@ test('Store', () => {
     messages: [],
     currentChannelId: null,
     form: {},
-    isSending: false,
-    isError: false
+    messageSendingState: 'none'
   });
 
   const channel1 = buildChannel(1, 'general');
-  store.dispatch(addChannel(channel1));
+  store.dispatch(actions.addChannel(channel1));
   expect(store.getState()).toEqual({
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [],
     currentChannelId: 1,
     form: {},
-    isSending: false,
-    isError: false
+    messageSendingState: 'none'
   });
 
   const message1 = buildMessage(1, 1, 'user1');
-  store.dispatch(addMessage(message1));
+  store.dispatch(actions.addMessage(message1));
   expect(store.getState()).toEqual({
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [message1],
     currentChannelId: 1,
     form: {},
-    isSending: false,
-    isError: false
+    messageSendingState: 'none'
   });
 
   const message2 = buildMessage(2, 1, 'user2');
-  store.dispatch(addMessage(message2));
+  store.dispatch(actions.addMessage(message2));
   expect(store.getState()).toEqual({
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [message1, message2],
     currentChannelId: 1,
     form: {},
-    isSending: false,
-    isError: false
+    messageSendingState: 'none'
   });
 
-  store.dispatch(sendMessage());
-  expect(store.getState().isSending).toEqual(true);
+  store.dispatch(actions.sendMessageRequest());
+  expect(store.getState().messageSendingState).toEqual('requested');
 
-  store.dispatch(receiveMessage());
-  expect(store.getState().isSending).toEqual(false);
+  store.dispatch(actions.sendMessageSuccess());
+  expect(store.getState().messageSendingState).toEqual('successed');
 
-  store.dispatch(throwSendingError());
-  expect(store.getState().isError).toEqual(true);
+  store.dispatch(actions.sendMessageFailure());
+  expect(store.getState().messageSendingState).toEqual('failed');
 
-  store.dispatch(sendMessage());
-  expect(store.getState().isSending).toEqual(true);
-  store.dispatch(resetSendingError());
-  expect(store.getState().isSending).toEqual(false);
-  expect(store.getState().isError).toEqual(false);
+  store.dispatch(actions.sendMessageNone());
+  expect(store.getState().messageSendingState).toEqual('none');
 });
