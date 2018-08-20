@@ -37,10 +37,7 @@ export default class Messages extends Component {
     return (
       <div className="p-3 col-10 h-100 d-flex flex-column justify-content-end align-items-stretch">
         <MessagesList messages={messages} />
-        <NewMessageForm
-          username={username}
-          currentChannelId={currentChannelId}
-        />
+        <NewMessageForm />
       </div>
     );
   }

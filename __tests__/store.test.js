@@ -1,6 +1,13 @@
 import { createStore } from 'redux';
 import reducers from '../src/reducers';
-import { addChannel, addMessage } from '../src/actions';
+import {
+  addChannel,
+  addMessage,
+  sendMessage,
+  receiveMessage,
+  throwSendingError,
+  resetSendingError
+} from '../src/actions';
 
 const buildChannel = (id, name) => ({
   id,
@@ -21,7 +28,10 @@ test('Store', () => {
     channels: [],
     messages: [],
     currentChannelId: null,
-    username: null
+    username: null,
+    form: {},
+    isSending: false,
+    isError: false
   });
 
   const channel1 = buildChannel(1, 'general');
@@ -30,7 +40,10 @@ test('Store', () => {
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [],
     currentChannelId: 1,
-    username: null
+    username: null,
+    form: {},
+    isSending: false,
+    isError: false
   });
 
   const message1 = buildMessage(1, 1, 'user1');
@@ -39,7 +52,10 @@ test('Store', () => {
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [message1],
     currentChannelId: 1,
-    username: null
+    username: null,
+    form: {},
+    isSending: false,
+    isError: false
   });
 
   const message2 = buildMessage(2, 1, 'user2');
@@ -48,6 +64,24 @@ test('Store', () => {
     channels: [{ id: 1, name: 'general', removable: false }],
     messages: [message1, message2],
     currentChannelId: 1,
-    username: null
+    username: null,
+    form: {},
+    isSending: false,
+    isError: false
   });
+
+  store.dispatch(sendMessage());
+  expect(store.getState().isSending).toEqual(true);
+
+  store.dispatch(receiveMessage());
+  expect(store.getState().isSending).toEqual(false);
+
+  store.dispatch(throwSendingError());
+  expect(store.getState().isError).toEqual(true);
+
+  store.dispatch(sendMessage());
+  expect(store.getState().isSending).toEqual(true);
+  store.dispatch(resetSendingError());
+  expect(store.getState().isSending).toEqual(false);
+  expect(store.getState().isError).toEqual(false);
 });
