@@ -19,19 +19,15 @@ if (process.env.NODE_ENV !== 'production') {
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__;
 /* eslint-enable */
 
-const username = faker.name.findName();
+const username = cookies.get('name') || faker.name.findName();
 cookies.set('name', username);
 
 const { channels, messages, currentChannelId } = gon;
 const initialState = { channels, messages, currentChannelId, username };
 
-const store = createStore(
-  rootReducer,
-  initialState,
-  reduxDevtools && reduxDevtools()
-);
+const store = createStore(rootReducer, initialState, reduxDevtools && reduxDevtools());
 
 const socket = io();
 
 addListeners(socket, store);
-getApp(store);
+getApp(store, username);

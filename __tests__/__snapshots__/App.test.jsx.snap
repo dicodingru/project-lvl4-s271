@@ -2,16 +2,16 @@
 
 exports[`App 1`] = `
 <div
-  class="p-3 h-100 row"
+  className="p-3 h-100 row"
 >
   <div
-    class="col-2 h-100 d-flex flex-column justify-content-start align-items-center"
+    className="col-2 h-100 d-flex flex-column justify-content-start align-items-center"
   >
     <div
-      class="list-group"
+      className="list-group"
     >
       <a
-        class="list-group-item active"
+        className="list-group-item active"
         href="#general"
       >
         <span>
@@ -19,7 +19,7 @@ exports[`App 1`] = `
         </span>
       </a>
       <a
-        class="list-group-item"
+        className="list-group-item"
         href="#random"
       >
         <span>
@@ -29,42 +29,54 @@ exports[`App 1`] = `
     </div>
   </div>
   <div
-    class="p-3 col-10 h-100 d-flex flex-column justify-content-end align-items-stretch"
+    className="p-3 col-10 h-100 d-flex flex-column justify-content-end align-items-stretch"
   >
     <div
-      class=""
+      className=""
     >
       <div>
+        user1
+        : 
         <span>
           message1
         </span>
       </div>
       <div>
+        user2
+        : 
         <span>
           message2
         </span>
       </div>
     </div>
-    <form>
+    <form
+      onSubmit={[Function]}
+    >
       <div
-        class="form-row"
+        className="form-row"
       >
         <div
-          class="col-9"
+          className="col-9"
         >
           <input
-            class="form-control"
+            className="form-control"
             name="text"
-            required=""
+            onBlur={[Function]}
+            onChange={[Function]}
+            onDragStart={[Function]}
+            onDrop={[Function]}
+            onFocus={[Function]}
+            required={true}
             type="text"
             value=""
           />
         </div>
         <div
-          class="col-3"
+          className="col-3"
         >
           <button
-            class="btn btn-primary"
+            className="btn btn-primary"
+            disabled={false}
             type="submit"
           >
             Send

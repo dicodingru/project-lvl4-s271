@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import UserContext from './user-context';
 
 import Root from './components/Root';
 
-export default (store) => {
+export default (store, username) => {
   ReactDOM.render(
     <Provider store={store}>
-      <Root />
+      <UserContext.Provider value={username}>
+        <Root />
+      </UserContext.Provider>
     </Provider>,
     document.getElementById('chat')
   );

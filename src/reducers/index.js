@@ -30,8 +30,6 @@ const currentChannelId = handleActions(
   null
 );
 
-const username = handleActions({}, null);
-
 const isSending = handleActions(
   {
     [actions.sendMessage]() {
@@ -63,7 +61,6 @@ const rootReducer = combineReducers({
   channels,
   messages,
   currentChannelId,
-  username,
   isSending,
   isError,
   form: formReducer
