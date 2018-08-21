@@ -13,6 +13,7 @@ exports[`App 1`] = `
       <a
         className="list-group-item active"
         href="#general"
+        onClick={[Function]}
       >
         <span>
           general
@@ -21,6 +22,7 @@ exports[`App 1`] = `
       <a
         className="list-group-item"
         href="#random"
+        onClick={[Function]}
       >
         <span>
           random

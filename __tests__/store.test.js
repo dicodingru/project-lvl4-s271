@@ -66,4 +66,7 @@ test('Store', () => {
 
   store.dispatch(actions.sendMessageNone());
   expect(store.getState().messageSendingState).toEqual('none');
+
+  store.dispatch(actions.changeCurrentChannel({ id: 2 }));
+  expect(store.getState().currentChannelId).toEqual(2);
 });
