@@ -25,6 +25,14 @@ const currentChannelId = handleActions(
   {
     [actions.addChannel](state, { payload: channel }) {
       return state || channel.id;
+    },
+    [actions.changeCurrentChannel](
+      state,
+      {
+        payload: { id }
+      }
+    ) {
+      return id;
     }
   },
   null

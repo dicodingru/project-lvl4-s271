@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ChannelLink from './ChannelLink';
+import * as actionCreators from '../actions';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -11,7 +12,7 @@ const mapStateToProps = (state) => {
   return props;
 };
 
-@connect(mapStateToProps)
+@connect(mapStateToProps, actionCreators)
 export default class ChannelsList extends Component {
   static propTypes = {
     channels: PropTypes.arrayOf(
@@ -21,7 +22,13 @@ export default class ChannelsList extends Component {
         removable: PropTypes.bool
       })
     ).isRequired,
-    currentChannelId: PropTypes.number.isRequired
+    currentChannelId: PropTypes.number.isRequired,
+    changeCurrentChannel: PropTypes.func.isRequired
+  };
+
+  handleClick = (id) => () => {
+    const { changeCurrentChannel } = this.props;
+    changeCurrentChannel({ id });
   };
 
   render() {
@@ -34,6 +41,7 @@ export default class ChannelsList extends Component {
               key={id}
               name={name}
               isActive={id === currentChannelId}
+              onClick={this.handleClick(id)}
             />
           ))}
         </div>
