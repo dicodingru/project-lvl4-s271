@@ -4,6 +4,7 @@ import routes from '../routes';
 
 export const addChannel = createAction('CHANNEL_ADD');
 export const addMessage = createAction('MESSAGE_ADD');
+
 export const changeCurrentChannel = createAction('CURRENT_CHANNEL_CHANGE');
 
 export const sendMessageNone = createAction('MESSAGE_SEND_NONE');
@@ -26,6 +27,26 @@ export const sendMessage = (data, currentChannelId, reset) => async (dispatch) =
   }
 };
 
+export const createChannelNone = createAction('CHANNEL_CREATE_NONE');
+export const createChannelRequest = createAction('CHANNEL_CREATE_REQUEST');
+export const createChannelSuccess = createAction('CHANNEL_CREATE_SUCCESS');
+export const createChannelFailure = createAction('CHANNEL_CREATE_FAILURE');
+
+export const createChannel = (data, reset) => async (dispatch) => {
+  dispatch(createChannelRequest());
+  try {
+    const url = routes.channelsUrl();
+    await axios.post(url, { data });
+    dispatch(createChannelSuccess());
+    reset();
+  } catch (e) {
+    dispatch(createChannelFailure());
+    setTimeout(() => {
+      dispatch(createChannelNone());
+    }, 3000);
+  }
+};
+
 export default {
   addChannel,
   addMessage,
@@ -33,5 +54,10 @@ export default {
   sendMessageSuccess,
   sendMessageFailure,
   sendMessageNone,
-  sendMessage
+  sendMessage,
+  createChannelRequest,
+  createChannelSuccess,
+  createChannelFailure,
+  createChannelNone,
+  createChannel
 };

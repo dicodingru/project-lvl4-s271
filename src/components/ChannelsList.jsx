@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ChannelLink from './ChannelLink';
 import * as actionCreators from '../actions';
+import NewChannelForm from './NewChannelForm';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -34,8 +35,9 @@ export default class ChannelsList extends Component {
   render() {
     const { channels, currentChannelId } = this.props;
     return (
-      <div className="col-2 h-100 d-flex flex-column justify-content-start align-items-center">
-        <div className="list-group">
+      <div className="col-3 h-100 d-flex flex-column justify-content-start align-items-center">
+        <NewChannelForm />
+        <div className="list-group w-100">
           {channels.map(({ id, name }) => (
             <ChannelLink
               key={id}

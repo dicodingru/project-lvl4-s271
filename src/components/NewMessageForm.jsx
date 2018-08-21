@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import actionCreators from '../actions';
-
-const Error = () => (
-  <div className="alert alert-warning" role="alert">
-    Something went wrong! Check your internet connection!
-  </div>
-);
+import Error from './Error';
 
 const mapStateToProps = (state) => {
   const props = {

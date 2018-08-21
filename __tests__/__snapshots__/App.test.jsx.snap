@@ -5,33 +5,75 @@ exports[`App 1`] = `
   className="p-3 h-100 row"
 >
   <div
-    className="col-2 h-100 d-flex flex-column justify-content-start align-items-center"
+    className="col-3 h-100 d-flex flex-column justify-content-start align-items-center"
   >
-    <div
-      className="list-group"
+    <form
+      className="mb-4 w-100"
+      onSubmit={[Function]}
     >
-      <a
-        className="list-group-item active"
-        href="#general"
-        onClick={[Function]}
+      <div
+        className="row d-flex align-items-center justify-content-between"
       >
-        <span>
-          general
-        </span>
-      </a>
-      <a
-        className="list-group-item"
-        href="#random"
-        onClick={[Function]}
-      >
-        <span>
-          random
-        </span>
-      </a>
+        <div
+          className="col-9"
+        >
+          <input
+            className="form-control"
+            name="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onDragStart={[Function]}
+            onDrop={[Function]}
+            onFocus={[Function]}
+            required={true}
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="col-3"
+        >
+          <button
+            className="btn btn-success"
+            disabled={false}
+            type="submit"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </form>
+    <div
+      className="list-group w-100"
+    >
+      <div>
+        <a
+          className="list-group-item list-group-item-success"
+          href="#general"
+          onClick={[Function]}
+        >
+          <span>
+            # 
+            general
+          </span>
+        </a>
+      </div>
+      <div>
+        <a
+          className="list-group-item"
+          href="#random"
+          onClick={[Function]}
+        >
+          <span>
+            # 
+            random
+          </span>
+        </a>
+      </div>
     </div>
   </div>
   <div
-    className="p-3 col-10 h-100 d-flex flex-column justify-content-end align-items-stretch"
+    className="p-3 col-9 h-100 d-flex flex-column justify-content-end align-items-stretch"
   >
     <div
       className=""

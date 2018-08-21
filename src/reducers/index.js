@@ -56,11 +56,30 @@ const messageSendingState = handleActions(
   'none'
 );
 
+const channelCreatingState = handleActions(
+  {
+    [actions.createChannelNone]() {
+      return 'none';
+    },
+    [actions.createChannelRequest]() {
+      return 'requested';
+    },
+    [actions.createChannelSuccess]() {
+      return 'successed';
+    },
+    [actions.createChannelFailure]() {
+      return 'failed';
+    }
+  },
+  'none'
+);
+
 const rootReducer = combineReducers({
   channels,
   messages,
   currentChannelId,
   messageSendingState,
+  channelCreatingState,
   form: formReducer
 });
 

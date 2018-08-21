@@ -22,7 +22,8 @@ test('Store', () => {
     messages: [],
     currentChannelId: null,
     form: {},
-    messageSendingState: 'none'
+    messageSendingState: 'none',
+    channelCreatingState: 'none'
   });
 
   const channel1 = buildChannel(1, 'general');
@@ -32,7 +33,8 @@ test('Store', () => {
     messages: [],
     currentChannelId: 1,
     form: {},
-    messageSendingState: 'none'
+    messageSendingState: 'none',
+    channelCreatingState: 'none'
   });
 
   const message1 = buildMessage(1, 1, 'user1');
@@ -42,7 +44,8 @@ test('Store', () => {
     messages: [message1],
     currentChannelId: 1,
     form: {},
-    messageSendingState: 'none'
+    messageSendingState: 'none',
+    channelCreatingState: 'none'
   });
 
   const message2 = buildMessage(2, 1, 'user2');
@@ -52,7 +55,8 @@ test('Store', () => {
     messages: [message1, message2],
     currentChannelId: 1,
     form: {},
-    messageSendingState: 'none'
+    messageSendingState: 'none',
+    channelCreatingState: 'none'
   });
 
   store.dispatch(actions.sendMessageRequest());
@@ -69,4 +73,16 @@ test('Store', () => {
 
   store.dispatch(actions.changeCurrentChannel({ id: 2 }));
   expect(store.getState().currentChannelId).toEqual(2);
+
+  store.dispatch(actions.createChannelRequest());
+  expect(store.getState().channelCreatingState).toEqual('requested');
+
+  store.dispatch(actions.createChannelSuccess());
+  expect(store.getState().channelCreatingState).toEqual('successed');
+
+  store.dispatch(actions.createChannelFailure());
+  expect(store.getState().channelCreatingState).toEqual('failed');
+
+  store.dispatch(actions.createChannelNone());
+  expect(store.getState().channelCreatingState).toEqual('none');
 });
