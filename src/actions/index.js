@@ -4,6 +4,7 @@ import routes from '../routes';
 
 export const addChannel = createAction('CHANNEL_ADD');
 export const addMessage = createAction('MESSAGE_ADD');
+export const changeCurrentChannel = createAction('CURRENT_CHANNEL_CHANGE');
 
 export const sendMessageNone = createAction('MESSAGE_SEND_NONE');
 export const sendMessageRequest = createAction('MESSAGE_SEND_REQUEST');
