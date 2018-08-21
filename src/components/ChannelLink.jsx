@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 const ChannelLink = (props) => {
   const { name, isActive, onClick } = props;
-  const linkClass = `list-group-item${isActive ? ' active' : ''}`;
+  const linkClass = `list-group-item${isActive ? ' list-group-item-success' : ''}`;
   return (
-    <a className={linkClass} href={`#${name}`} onClick={onClick}>
-      <span>{name}</span>
-    </a>
+    <div>
+      <a className={linkClass} href={`#${name}`} onClick={onClick}>
+        <span># {name}</span>
+      </a>
+    </div>
   );
 };
 
