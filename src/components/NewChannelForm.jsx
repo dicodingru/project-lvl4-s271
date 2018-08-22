@@ -19,6 +19,8 @@ class NewChannelForm extends Component {
     channelCreatingState: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
+    pristine: PropTypes.bool.isRequired,
+    submitting: PropTypes.bool.isRequired,
     createChannel: PropTypes.func.isRequired
   };
 
@@ -29,12 +31,11 @@ class NewChannelForm extends Component {
         name
       }
     };
-    createChannel(data, reset);
+    return createChannel(data, reset);
   };
 
   render() {
-    const { handleSubmit, channelCreatingState } = this.props;
-    const disabled = channelCreatingState === 'requested';
+    const { handleSubmit, channelCreatingState, pristine, submitting } = this.props;
     const isError = channelCreatingState === 'failed';
     return (
       <form className="mb-4 w-100" onSubmit={handleSubmit(this.add)}>
@@ -50,7 +51,10 @@ class NewChannelForm extends Component {
             />
           </div>
           <div className="col-3">
-            <button className="btn btn-success" type="submit" disabled={disabled}>
+            <button
+              className="btn btn-success"
+              type="submit"
+              disabled={pristine || submitting}>
               Add
             </button>
           </div>

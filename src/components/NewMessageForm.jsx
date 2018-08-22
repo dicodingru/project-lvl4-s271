@@ -22,6 +22,8 @@ class NewMessageForm extends Component {
     messageSendingState: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
+    pristine: PropTypes.bool.isRequired,
+    submitting: PropTypes.bool.isRequired,
     sendMessage: PropTypes.func.isRequired
   };
 
@@ -33,12 +35,11 @@ class NewMessageForm extends Component {
         text
       }
     };
-    sendMessage(data, currentChannelId, reset);
+    return sendMessage(data, currentChannelId, reset);
   };
 
   render() {
-    const { handleSubmit, messageSendingState } = this.props;
-    const disabled = messageSendingState === 'requested';
+    const { handleSubmit, messageSendingState, pristine, submitting } = this.props;
     const isError = messageSendingState === 'failed';
     return (
       <form onSubmit={handleSubmit(this.send)}>
@@ -54,7 +55,10 @@ class NewMessageForm extends Component {
             />
           </div>
           <div className="col-3">
-            <button className="btn btn-primary" type="submit" disabled={disabled}>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={pristine || submitting}>
               Send
             </button>
           </div>
