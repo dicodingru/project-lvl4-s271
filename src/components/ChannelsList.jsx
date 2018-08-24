@@ -24,7 +24,8 @@ export default class ChannelsList extends Component {
       })
     ).isRequired,
     currentChannelId: PropTypes.number.isRequired,
-    changeCurrentChannel: PropTypes.func.isRequired
+    changeCurrentChannel: PropTypes.func.isRequired,
+    removeChannel: PropTypes.func.isRequired
   };
 
   handleClick = (id) => () => {

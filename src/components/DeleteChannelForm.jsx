@@ -16,13 +16,18 @@ const DeleteChannelForm = ({ onRemove, onCancel }) => {
           <button type="button" className="btn btn-danger" onClick={onRemove}>
             Yes
           </button>
-          <button type="button" className="btn btn-danger" onClick={onCancel}>
+          <button type="button" className="btn btn-info" onClick={onCancel}>
             No
           </button>
         </div>
       </div>
     </form>
   );
+};
+
+DeleteChannelForm.propTypes = {
+  onRemove: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 };
 
 export default DeleteChannelForm;

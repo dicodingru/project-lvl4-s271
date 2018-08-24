@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const DeleteChannelButton = ({ onClick }) => (
   <a
@@ -8,5 +9,9 @@ const DeleteChannelButton = ({ onClick }) => (
     &times;
   </a>
 );
+
+DeleteChannelButton.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
 
 export default DeleteChannelButton;

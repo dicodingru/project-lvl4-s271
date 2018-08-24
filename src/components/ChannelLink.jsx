@@ -8,7 +8,9 @@ class ChannelLink extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     isActive: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
+    handleRemove: PropTypes.func.isRequired,
+    isRemovable: PropTypes.bool.isRequired
   };
 
   state = {
@@ -18,7 +20,6 @@ class ChannelLink extends Component {
 
   onRemove = () => {
     const { handleRemove } = this.props;
-    // this.setState({ isConfirmed: false });
     handleRemove();
   };
 
