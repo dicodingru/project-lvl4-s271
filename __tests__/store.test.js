@@ -5,7 +5,7 @@ import * as actions from '../src/actions';
 const buildChannel = (id, name) => ({
   id,
   name,
-  removable: false
+  removable: true
 });
 
 const buildMessage = (id, channelId, username) => ({
@@ -15,48 +15,105 @@ const buildMessage = (id, channelId, username) => ({
   text: Math.random()
 });
 
+const initialState = {
+  channels: [
+    { id: 1, name: 'general', removable: false },
+    { id: 2, name: 'random', removable: false }
+  ],
+  messages: [],
+  currentChannelId: 1
+};
+
 test('Store', () => {
-  const store = createStore(reducers);
+  const store = createStore(reducers, initialState);
   expect(store.getState()).toEqual({
-    channels: [],
+    channels: [
+      { id: 1, name: 'general', removable: false },
+      { id: 2, name: 'random', removable: false }
+    ],
+    messages: [],
+    currentChannelId: 1,
+    form: {},
+    messageSendingState: 'none',
+    channelCreatingState: 'none',
+    channelRemovingState: 'none'
+  });
+
+  const channel1 = buildChannel(3, 'test');
+  store.dispatch(actions.addChannel(channel1));
+  expect(store.getState()).toEqual({
+    channels: [
+      { id: 1, name: 'general', removable: false },
+      { id: 2, name: 'random', removable: false },
+      { id: 3, name: 'test', removable: true }
+    ],
+    messages: [],
+    currentChannelId: 1,
+    form: {},
+    messageSendingState: 'none',
+    channelCreatingState: 'none',
+    channelRemovingState: 'none'
+  });
+
+  store.dispatch(actions.changeCurrentChannel({ id: 3 }));
+  expect(store.getState()).toEqual({
+    channels: [
+      { id: 1, name: 'general', removable: false },
+      { id: 2, name: 'random', removable: false },
+      { id: 3, name: 'test', removable: true }
+    ],
+    messages: [],
+    currentChannelId: 3,
+    form: {},
+    messageSendingState: 'none',
+    channelCreatingState: 'none',
+    channelRemovingState: 'none'
+  });
+
+  const message1 = buildMessage(1, 3, 'user1');
+  store.dispatch(actions.addMessage(message1));
+  expect(store.getState()).toEqual({
+    channels: [
+      { id: 1, name: 'general', removable: false },
+      { id: 2, name: 'random', removable: false },
+      { id: 3, name: 'test', removable: true }
+    ],
+    messages: [message1],
+    currentChannelId: 3,
+    form: {},
+    messageSendingState: 'none',
+    channelCreatingState: 'none',
+    channelRemovingState: 'none'
+  });
+
+  const message2 = buildMessage(2, 3, 'user2');
+  store.dispatch(actions.addMessage(message2));
+  expect(store.getState()).toEqual({
+    channels: [
+      { id: 1, name: 'general', removable: false },
+      { id: 2, name: 'random', removable: false },
+      { id: 3, name: 'test', removable: true }
+    ],
+    messages: [message1, message2],
+    currentChannelId: 3,
+    form: {},
+    messageSendingState: 'none',
+    channelCreatingState: 'none',
+    channelRemovingState: 'none'
+  });
+
+  store.dispatch(actions.deleteChannel({ id: 3 }));
+  expect(store.getState()).toEqual({
+    channels: [
+      { id: 1, name: 'general', removable: false },
+      { id: 2, name: 'random', removable: false }
+    ],
     messages: [],
     currentChannelId: null,
     form: {},
     messageSendingState: 'none',
-    channelCreatingState: 'none'
-  });
-
-  const channel1 = buildChannel(1, 'general');
-  store.dispatch(actions.addChannel(channel1));
-  expect(store.getState()).toEqual({
-    channels: [{ id: 1, name: 'general', removable: false }],
-    messages: [],
-    currentChannelId: 1,
-    form: {},
-    messageSendingState: 'none',
-    channelCreatingState: 'none'
-  });
-
-  const message1 = buildMessage(1, 1, 'user1');
-  store.dispatch(actions.addMessage(message1));
-  expect(store.getState()).toEqual({
-    channels: [{ id: 1, name: 'general', removable: false }],
-    messages: [message1],
-    currentChannelId: 1,
-    form: {},
-    messageSendingState: 'none',
-    channelCreatingState: 'none'
-  });
-
-  const message2 = buildMessage(2, 1, 'user2');
-  store.dispatch(actions.addMessage(message2));
-  expect(store.getState()).toEqual({
-    channels: [{ id: 1, name: 'general', removable: false }],
-    messages: [message1, message2],
-    currentChannelId: 1,
-    form: {},
-    messageSendingState: 'none',
-    channelCreatingState: 'none'
+    channelCreatingState: 'none',
+    channelRemovingState: 'none'
   });
 
   store.dispatch(actions.sendMessageRequest());
@@ -85,4 +142,16 @@ test('Store', () => {
 
   store.dispatch(actions.createChannelNone());
   expect(store.getState().channelCreatingState).toEqual('none');
+
+  store.dispatch(actions.removeChannelRequest());
+  expect(store.getState().channelRemovingState).toEqual('requested');
+
+  store.dispatch(actions.removeChannelSuccess());
+  expect(store.getState().channelRemovingState).toEqual('successed');
+
+  store.dispatch(actions.removeChannelFailure());
+  expect(store.getState().channelRemovingState).toEqual('failed');
+
+  store.dispatch(actions.removeChannelNone());
+  expect(store.getState().channelRemovingState).toEqual('none');
 });

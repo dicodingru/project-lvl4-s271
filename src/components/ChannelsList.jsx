@@ -32,6 +32,11 @@ export default class ChannelsList extends Component {
     changeCurrentChannel({ id });
   };
 
+  handleRemove = (id) => () => {
+    const { removeChannel } = this.props;
+    removeChannel(id);
+  };
+
   render() {
     const { channels, currentChannelId } = this.props;
     return (
@@ -44,6 +49,7 @@ export default class ChannelsList extends Component {
               name={name}
               isActive={id === currentChannelId}
               onClick={this.handleClick(id)}
+              handleRemove={this.handleRemove(id)}
             />
           ))}
         </div>
