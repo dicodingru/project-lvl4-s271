@@ -46,9 +46,18 @@ exports[`App 1`] = `
     <div
       className="list-group w-100"
     >
-      <div>
+      <div
+        className="list-group-item list-group-item-success d-flex justify-content-between"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "position": "relative",
+          }
+        }
+      >
         <a
-          className="list-group-item list-group-item-success"
+          className="w-100"
           href="#general"
           onClick={[Function]}
         >
@@ -58,9 +67,18 @@ exports[`App 1`] = `
           </span>
         </a>
       </div>
-      <div>
+      <div
+        className="list-group-item d-flex justify-content-between"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "position": "relative",
+          }
+        }
+      >
         <a
-          className="list-group-item"
+          className="w-100"
           href="#random"
           onClick={[Function]}
         >
