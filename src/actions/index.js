@@ -4,8 +4,28 @@ import routes from '../routes';
 
 export const addChannel = createAction('CHANNEL_ADD');
 export const addMessage = createAction('MESSAGE_ADD');
+export const deleteChannel = createAction('CHANNEL_DELETE');
 
 export const changeCurrentChannel = createAction('CURRENT_CHANNEL_CHANGE');
+
+export const removeChannelNone = createAction('CHANNEL_REMOVE_NONE');
+export const removeChannelRequest = createAction('CHANNEL_REMOVE_REQUEST');
+export const removeChannelSuccess = createAction('CHANNEL_REMOVE_SUCCESS');
+export const removeChannelFailure = createAction('CHANNEL_REMOVE_FAILURE');
+
+export const removeChannel = (id) => async (dispatch) => {
+  dispatch(removeChannelRequest());
+  try {
+    const url = routes.channelUrl(id);
+    await axios.delete(url);
+    dispatch(removeChannelSuccess());
+  } catch (e) {
+    dispatch(removeChannelFailure());
+    setTimeout(() => {
+      dispatch(removeChannelNone());
+    }, 3000);
+  }
+};
 
 export const sendMessageNone = createAction('MESSAGE_SEND_NONE');
 export const sendMessageRequest = createAction('MESSAGE_SEND_REQUEST');
