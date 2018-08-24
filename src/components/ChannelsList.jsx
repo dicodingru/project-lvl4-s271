@@ -8,7 +8,8 @@ import NewChannelForm from './NewChannelForm';
 const mapStateToProps = (state) => {
   const props = {
     channels: state.channels,
-    currentChannelId: state.currentChannelId
+    currentChannelId: state.currentChannelId,
+    channelRemovingState: state.channelRemovingState
   };
   return props;
 };
@@ -25,7 +26,8 @@ export default class ChannelsList extends Component {
     ).isRequired,
     currentChannelId: PropTypes.number.isRequired,
     changeCurrentChannel: PropTypes.func.isRequired,
-    removeChannel: PropTypes.func.isRequired
+    removeChannel: PropTypes.func.isRequired,
+    channelRemovingState: PropTypes.string.isRequired
   };
 
   handleClick = (id) => () => {
@@ -39,7 +41,7 @@ export default class ChannelsList extends Component {
   };
 
   render() {
-    const { channels, currentChannelId } = this.props;
+    const { channels, currentChannelId, channelRemovingState } = this.props;
     return (
       <div className="col-3 h-100 d-flex flex-column justify-content-start align-items-center">
         <NewChannelForm />
@@ -52,6 +54,7 @@ export default class ChannelsList extends Component {
               isRemovable={removable}
               onClick={this.handleClick(id)}
               handleRemove={this.handleRemove(id)}
+              isError={channelRemovingState === 'failed'}
             />
           ))}
         </div>

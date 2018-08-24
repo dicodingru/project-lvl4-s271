@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import DeleteChannelButton from './DeleteChannelButton';
 import DeleteChannelForm from './DeleteChannelForm';
+import Error from './Error';
 
 class ChannelLink extends Component {
   static propTypes = {
@@ -10,7 +11,8 @@ class ChannelLink extends Component {
     isActive: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
     handleRemove: PropTypes.func.isRequired,
-    isRemovable: PropTypes.bool.isRequired
+    isRemovable: PropTypes.bool.isRequired,
+    isError: PropTypes.bool.isRequired
   };
 
   state = {
@@ -36,7 +38,7 @@ class ChannelLink extends Component {
   };
 
   render() {
-    const { name, isActive, onClick, isRemovable } = this.props;
+    const { name, isActive, onClick, isRemovable, isError } = this.props;
     const linkClass = cn({
       'list-group-item': true,
       'list-group-item-success': isActive,
@@ -57,9 +59,11 @@ class ChannelLink extends Component {
         {isRemovable &&
           isHovering &&
           !isConfirmed && <DeleteChannelButton onClick={this.onConfirm} />}
-        {isConfirmed && (
-          <DeleteChannelForm onRemove={this.onRemove} onCancel={this.onCancel} />
-        )}
+        {isConfirmed &&
+          !isError && (
+            <DeleteChannelForm onRemove={this.onRemove} onCancel={this.onCancel} />
+          )}
+        {isError && <Error />}
       </div>
     );
   }
