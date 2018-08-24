@@ -43,11 +43,12 @@ export default class ChannelsList extends Component {
       <div className="col-3 h-100 d-flex flex-column justify-content-start align-items-center">
         <NewChannelForm />
         <div className="list-group w-100">
-          {channels.map(({ id, name }) => (
+          {channels.map(({ id, name, removable }) => (
             <ChannelLink
               key={id}
               name={name}
               isActive={id === currentChannelId}
+              isRemovable={removable}
               onClick={this.handleClick(id)}
               handleRemove={this.handleRemove(id)}
             />

@@ -18,8 +18,12 @@ class ChannelLink extends Component {
 
   onRemove = () => {
     const { handleRemove } = this.props;
-    this.setState({ isConfirmed: false });
+    // this.setState({ isConfirmed: false });
     handleRemove();
+  };
+
+  onCancel = () => {
+    this.setState({ isConfirmed: false, isHovering: false });
   };
 
   onConfirm = () => {
@@ -31,24 +35,30 @@ class ChannelLink extends Component {
   };
 
   render() {
-    const { name, isActive, onClick } = this.props;
+    const { name, isActive, onClick, isRemovable } = this.props;
     const linkClass = cn({
       'list-group-item': true,
       'list-group-item-success': isActive,
       'd-flex': true,
       'justify-content-between': true
     });
+    const linkStyle = { position: 'relative' };
     const { isHovering, isConfirmed } = this.state;
     return (
       <div
         className={linkClass}
+        style={linkStyle}
         onMouseEnter={this.toggleHoverState}
         onMouseLeave={this.toggleHoverState}>
-        <a href={`#${name}`} onClick={onClick}>
+        <a className="w-100" href={`#${name}`} onClick={onClick}>
           <span># {name}</span>
         </a>
-        {isHovering && !isConfirmed && <DeleteChannelButton onClick={this.onConfirm} />}
-        {isConfirmed && <DeleteChannelForm onRemove={this.onRemove} />}
+        {isRemovable &&
+          isHovering &&
+          !isConfirmed && <DeleteChannelButton onClick={this.onConfirm} />}
+        {isConfirmed && (
+          <DeleteChannelForm onRemove={this.onRemove} onCancel={this.onCancel} />
+        )}
       </div>
     );
   }
