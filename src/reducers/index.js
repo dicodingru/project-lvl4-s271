@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import _ from 'lodash';
 import * as actions from '../actions';
 
 const channels = handleActions(
@@ -15,6 +16,10 @@ const channels = handleActions(
       }
     ) {
       return state.filter((channel) => channel.id !== id);
+    },
+    [actions.updateChannel](state, { payload: channel }) {
+      const index = _.findIndex(state, ({ id }) => id === channel.id);
+      return state.map((c, i) => (i === index ? channel : c));
     }
   },
   []
@@ -116,6 +121,24 @@ const channelRemovingState = handleActions(
   'none'
 );
 
+const channelRenamingState = handleActions(
+  {
+    [actions.renameChannelNone]() {
+      return 'none';
+    },
+    [actions.renameChannelRequest]() {
+      return 'requested';
+    },
+    [actions.renameChannelSuccess]() {
+      return 'successed';
+    },
+    [actions.renameChannelFailure]() {
+      return 'failed';
+    }
+  },
+  'none'
+);
+
 const rootReducer = combineReducers({
   channels,
   messages,
@@ -123,6 +146,7 @@ const rootReducer = combineReducers({
   messageSendingState,
   channelCreatingState,
   channelRemovingState,
+  channelRenamingState,
   form: formReducer
 });
 

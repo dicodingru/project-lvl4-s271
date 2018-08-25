@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import actionCreators from '../actions';
+import * as actionCreators from '../actions';
 import Error from './Error';
 
 const mapStateToProps = (state) => {

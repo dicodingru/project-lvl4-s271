@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const DeleteChannelForm = ({ onRemove, onCancel }) => {
+const DeleteChannelForm = ({ onRemove, onCancel, isDeleting }) => {
   const formStyle = {
     width: '100px',
     position: 'absolute',
     top: '0.3em',
     right: '-110px',
-    zIndex: '999'
+    zIndex: '999',
+    display: isDeleting ? 'block' : 'none'
   };
   return (
     <form style={formStyle}>
@@ -27,7 +28,8 @@ const DeleteChannelForm = ({ onRemove, onCancel }) => {
 
 DeleteChannelForm.propTypes = {
   onRemove: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired
+  onCancel: PropTypes.func.isRequired,
+  isDeleting: PropTypes.bool.isRequired
 };
 
 export default DeleteChannelForm;
