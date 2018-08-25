@@ -26,7 +26,8 @@ const initialState = {
   form: {},
   messageSendingState: 'none',
   channelCreatingState: 'none',
-  channelRemovingState: 'none'
+  channelRemovingState: 'none',
+  channelRenamingState: 'none'
 };
 
 describe('Store', () => {
@@ -48,7 +49,8 @@ describe('Store', () => {
       form: {},
       messageSendingState: 'none',
       channelCreatingState: 'none',
-      channelRemovingState: 'none'
+      channelRemovingState: 'none',
+      channelRenamingState: 'none'
     });
   });
 
@@ -81,6 +83,15 @@ describe('Store', () => {
     expect(store.getState().channels).toEqual([
       { id: 1, name: 'general', removable: false },
       { id: 2, name: 'random', removable: false }
+    ]);
+  });
+
+  test('should update channel', () => {
+    store.dispatch(actions.updateChannel({ id: 3, name: 'new', removable: true }));
+    expect(store.getState().channels).toEqual([
+      { id: 1, name: 'general', removable: false },
+      { id: 2, name: 'random', removable: false },
+      { id: 3, name: 'new', removable: true }
     ]);
   });
 
@@ -120,5 +131,17 @@ describe('Store', () => {
 
     store.dispatch(actions.removeChannelNone());
     expect(store.getState().channelRemovingState).toEqual('none');
+
+    store.dispatch(actions.renameChannelRequest());
+    expect(store.getState().channelRenamingState).toEqual('requested');
+
+    store.dispatch(actions.renameChannelSuccess());
+    expect(store.getState().channelRenamingState).toEqual('successed');
+
+    store.dispatch(actions.renameChannelFailure());
+    expect(store.getState().channelRenamingState).toEqual('failed');
+
+    store.dispatch(actions.renameChannelNone());
+    expect(store.getState().channelRenamingState).toEqual('none');
   });
 });

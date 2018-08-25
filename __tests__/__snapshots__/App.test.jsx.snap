@@ -66,6 +66,83 @@ exports[`App 1`] = `
             general
           </span>
         </a>
+        <form
+          style={
+            Object {
+              "display": "none",
+              "position": "absolute",
+              "right": "-110px",
+              "top": "0.3em",
+              "width": "100px",
+              "zIndex": "999",
+            }
+          }
+        >
+          <div
+            className="form-group"
+          >
+            <div
+              className="form-row"
+            >
+              <button
+                className="btn btn-danger"
+                onClick={[Function]}
+                type="button"
+              >
+                Yes
+              </button>
+              <button
+                className="btn btn-info"
+                onClick={[Function]}
+                type="button"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </form>
+        <div
+          className="modal"
+        >
+          <div
+            className="modal-dialog"
+          >
+            <div
+              className="modal-content"
+            >
+              <div
+                className="modal-body"
+              >
+                <form
+                  onSubmit={[Function]}
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <input
+                      className="form-control"
+                      name="name"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onDragStart={[Function]}
+                      onDrop={[Function]}
+                      onFocus={[Function]}
+                      type="text"
+                      value=""
+                    />
+                    <button
+                      className="btn btn-primary btn-block"
+                      data-dismiss="modal"
+                      type="submit"
+                    >
+                      OK
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div
         className="list-group-item d-flex justify-content-between"
@@ -87,6 +164,83 @@ exports[`App 1`] = `
             random
           </span>
         </a>
+        <form
+          style={
+            Object {
+              "display": "none",
+              "position": "absolute",
+              "right": "-110px",
+              "top": "0.3em",
+              "width": "100px",
+              "zIndex": "999",
+            }
+          }
+        >
+          <div
+            className="form-group"
+          >
+            <div
+              className="form-row"
+            >
+              <button
+                className="btn btn-danger"
+                onClick={[Function]}
+                type="button"
+              >
+                Yes
+              </button>
+              <button
+                className="btn btn-info"
+                onClick={[Function]}
+                type="button"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </form>
+        <div
+          className="modal"
+        >
+          <div
+            className="modal-dialog"
+          >
+            <div
+              className="modal-content"
+            >
+              <div
+                className="modal-body"
+              >
+                <form
+                  onSubmit={[Function]}
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <input
+                      className="form-control"
+                      name="name"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onDragStart={[Function]}
+                      onDrop={[Function]}
+                      onFocus={[Function]}
+                      type="text"
+                      value=""
+                    />
+                    <button
+                      className="btn btn-primary btn-block"
+                      data-dismiss="modal"
+                      type="submit"
+                    >
+                      OK
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

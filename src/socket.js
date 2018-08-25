@@ -1,4 +1,4 @@
-import { addMessage, addChannel, deleteChannel } from './actions';
+import { addMessage, addChannel, deleteChannel, updateChannel } from './actions';
 
 export default (socket, store) => {
   socket.on('newMessage', ({ data }) => {
@@ -12,5 +12,9 @@ export default (socket, store) => {
   socket.on('removeChannel', ({ data }) => {
     const { id } = data;
     store.dispatch(deleteChannel({ id }));
+  });
+  socket.on('renameChannel', ({ data }) => {
+    const { attributes } = data;
+    store.dispatch(updateChannel({ ...attributes }));
   });
 };
