@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     channels: state.channels,
     currentChannelId: state.currentChannelId,
     channelRemovingState: state.channelRemovingState,
-    channelRenamingState: state.channelRenamingState
+    networkErrorState: state.networkErrorState
   };
   return props;
 };
@@ -29,8 +29,7 @@ export default class ChannelsList extends Component {
     changeCurrentChannel: PropTypes.func.isRequired,
     removeChannel: PropTypes.func.isRequired,
     renameChannel: PropTypes.func.isRequired,
-    channelRemovingState: PropTypes.string.isRequired,
-    channelRenamingState: PropTypes.string.isRequired
+    networkErrorState: PropTypes.string.isRequired
   };
 
   handleClick = (id) => () => {
@@ -40,7 +39,7 @@ export default class ChannelsList extends Component {
 
   handleRemove = (id) => () => {
     const { removeChannel } = this.props;
-    removeChannel(id);
+    return removeChannel(id);
   };
 
   handleRename = (id) => (data) => {
@@ -49,12 +48,7 @@ export default class ChannelsList extends Component {
   };
 
   render() {
-    const {
-      channels,
-      currentChannelId,
-      channelRemovingState,
-      channelRenamingState
-    } = this.props;
+    const { channels, currentChannelId, networkErrorState } = this.props;
     return (
       <div className="col-3 h-100 d-flex flex-column justify-content-start align-items-center">
         <NewChannelForm />
@@ -68,9 +62,7 @@ export default class ChannelsList extends Component {
               onClick={this.handleClick(id)}
               handleRemove={this.handleRemove(id)}
               handleRename={this.handleRename(id)}
-              isError={
-                channelRemovingState === 'failed' || channelRenamingState === 'failed'
-              }
+              isError={networkErrorState === 'failed'}
             />
           ))}
         </div>

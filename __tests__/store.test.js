@@ -24,10 +24,7 @@ const initialState = {
   messages: [],
   currentChannelId: 1,
   form: {},
-  messageSendingState: 'none',
-  channelCreatingState: 'none',
-  channelRemovingState: 'none',
-  channelRenamingState: 'none'
+  networkErrorState: 'none'
 };
 
 describe('Store', () => {
@@ -47,10 +44,7 @@ describe('Store', () => {
       messages: [],
       currentChannelId: 1,
       form: {},
-      messageSendingState: 'none',
-      channelCreatingState: 'none',
-      channelRemovingState: 'none',
-      channelRenamingState: 'none'
+      networkErrorState: 'none'
     });
   });
 
@@ -95,53 +89,11 @@ describe('Store', () => {
     ]);
   });
 
-  test('should change request states', () => {
-    store.dispatch(actions.sendMessageRequest());
-    expect(store.getState().messageSendingState).toEqual('requested');
+  test('should change network error states', () => {
+    store.dispatch(actions.setNetworkErrorState());
+    expect(store.getState().networkErrorState).toEqual('failed');
 
-    store.dispatch(actions.sendMessageSuccess());
-    expect(store.getState().messageSendingState).toEqual('successed');
-
-    store.dispatch(actions.sendMessageFailure());
-    expect(store.getState().messageSendingState).toEqual('failed');
-
-    store.dispatch(actions.sendMessageNone());
-    expect(store.getState().messageSendingState).toEqual('none');
-
-    store.dispatch(actions.createChannelRequest());
-    expect(store.getState().channelCreatingState).toEqual('requested');
-
-    store.dispatch(actions.createChannelSuccess());
-    expect(store.getState().channelCreatingState).toEqual('successed');
-
-    store.dispatch(actions.createChannelFailure());
-    expect(store.getState().channelCreatingState).toEqual('failed');
-
-    store.dispatch(actions.createChannelNone());
-    expect(store.getState().channelCreatingState).toEqual('none');
-
-    store.dispatch(actions.removeChannelRequest());
-    expect(store.getState().channelRemovingState).toEqual('requested');
-
-    store.dispatch(actions.removeChannelSuccess());
-    expect(store.getState().channelRemovingState).toEqual('successed');
-
-    store.dispatch(actions.removeChannelFailure());
-    expect(store.getState().channelRemovingState).toEqual('failed');
-
-    store.dispatch(actions.removeChannelNone());
-    expect(store.getState().channelRemovingState).toEqual('none');
-
-    store.dispatch(actions.renameChannelRequest());
-    expect(store.getState().channelRenamingState).toEqual('requested');
-
-    store.dispatch(actions.renameChannelSuccess());
-    expect(store.getState().channelRenamingState).toEqual('successed');
-
-    store.dispatch(actions.renameChannelFailure());
-    expect(store.getState().channelRenamingState).toEqual('failed');
-
-    store.dispatch(actions.renameChannelNone());
-    expect(store.getState().channelRenamingState).toEqual('none');
+    store.dispatch(actions.clearNetworkErrorState());
+    expect(store.getState().networkErrorState).toEqual('none');
   });
 });

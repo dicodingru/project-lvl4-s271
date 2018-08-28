@@ -8,7 +8,7 @@ import Error from './Error';
 const mapStateToProps = (state) => {
   const props = {
     currentChannelId: state.currentChannelId,
-    messageSendingState: state.messageSendingState
+    networkErrorState: state.networkErrorState
   };
   return props;
 };
@@ -19,7 +19,7 @@ class NewMessageForm extends Component {
   static propTypes = {
     username: PropTypes.string.isRequired,
     currentChannelId: PropTypes.number.isRequired,
-    messageSendingState: PropTypes.string.isRequired,
+    networkErrorState: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
@@ -39,8 +39,8 @@ class NewMessageForm extends Component {
   };
 
   render() {
-    const { handleSubmit, messageSendingState, pristine, submitting } = this.props;
-    const isError = messageSendingState === 'failed';
+    const { handleSubmit, networkErrorState, pristine, submitting } = this.props;
+    const isError = networkErrorState === 'failed';
     return (
       <form onSubmit={handleSubmit(this.send)}>
         {isError && <Error />}

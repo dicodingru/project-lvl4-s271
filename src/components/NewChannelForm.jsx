@@ -7,7 +7,7 @@ import Error from './Error';
 
 const mapStateToProps = (state) => {
   const props = {
-    channelCreatingState: state.channelCreatingState
+    networkErrorState: state.networkErrorState
   };
   return props;
 };
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 @reduxForm({ form: 'newChannel' })
 class NewChannelForm extends Component {
   static propTypes = {
-    channelCreatingState: PropTypes.string.isRequired,
+    networkErrorState: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
@@ -35,8 +35,8 @@ class NewChannelForm extends Component {
   };
 
   render() {
-    const { handleSubmit, channelCreatingState, pristine, submitting } = this.props;
-    const isError = channelCreatingState === 'failed';
+    const { handleSubmit, networkErrorState, pristine, submitting } = this.props;
+    const isError = networkErrorState === 'failed';
     return (
       <form className="mb-4 w-100" onSubmit={handleSubmit(this.add)}>
         {isError && <Error />}

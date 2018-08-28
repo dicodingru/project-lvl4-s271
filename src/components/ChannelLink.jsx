@@ -26,7 +26,7 @@ class ChannelLink extends Component {
 
   onRemove = () => {
     const { handleRemove } = this.props;
-    handleRemove();
+    return handleRemove();
   };
 
   onRename = (data) => {
