@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import _ from 'lodash';
 import * as actions from '../actions';
+import channels from './channels';
 
 const networkErrorState = handleActions(
   {
@@ -28,27 +29,6 @@ const messages = handleActions(
       }
     ) {
       return state.filter(({ channelId }) => channelId !== id);
-    }
-  },
-  []
-);
-
-const channels = handleActions(
-  {
-    [actions.addChannel](state, { payload: channel }) {
-      return [...state, channel];
-    },
-    [actions.deleteChannel](
-      state,
-      {
-        payload: { id }
-      }
-    ) {
-      return state.filter((channel) => channel.id !== id);
-    },
-    [actions.updateChannel](state, { payload: channel }) {
-      const index = _.findIndex(state, ({ id }) => id === channel.id);
-      return state.map((c, i) => (i === index ? channel : c));
     }
   },
   []
