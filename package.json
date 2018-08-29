@@ -116,6 +116,7 @@
     "testEnvironment": "enzyme",
     "testEnvironmentOptions": {
       "enzymeAdapter": "react16"
-    }
+    },
+    "testURL": "http://localhost"
   }
 }

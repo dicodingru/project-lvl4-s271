@@ -2,20 +2,25 @@
 
 exports[`App 1`] = `
 <div
-  className="p-3 h-100 row"
+  className="container-fluid"
 >
   <div
-    className="col-3 h-100 d-flex flex-column justify-content-start align-items-center"
+    className="row h-100 align-items-between"
+    style={
+      Object {
+        "minWidth": "576px",
+      }
+    }
   >
-    <form
-      className="mb-4 w-100"
-      onSubmit={[Function]}
+    <div
+      className="col-4 col-lg-3"
     >
-      <div
-        className="row d-flex align-items-center justify-content-between"
+      <form
+        className="form-inline"
+        onSubmit={[Function]}
       >
         <div
-          className="col-9"
+          className="input-group w-100 mb-3"
         >
           <input
             className="form-control"
@@ -29,235 +34,245 @@ exports[`App 1`] = `
             type="text"
             value=""
           />
-        </div>
-        <div
-          className="col-3"
-        >
-          <button
-            className="btn btn-success"
-            disabled={true}
-            type="submit"
+          <div
+            className="input-group-append"
           >
-            Add
-          </button>
+            <button
+              className="btn btn-success"
+              disabled={true}
+              type="submit"
+            >
+              Add
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
-    <div
-      className="list-group w-100"
-    >
+      </form>
       <div
-        className="list-group-item list-group-item-success d-flex justify-content-between"
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        style={
-          Object {
-            "position": "relative",
-          }
-        }
+        className="list-group"
       >
-        <a
-          className="w-100"
-          href="#general"
-          onClick={[Function]}
-        >
-          <span>
-            # 
-            general
-          </span>
-        </a>
-        <form
-          onSubmit={[Function]}
+        <div
+          className="list-group-item list-group-item-success d-flex justify-content-between mb-2 rounded"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
           style={
             Object {
-              "display": "none",
-              "position": "absolute",
-              "right": "-110px",
-              "top": "0.3em",
-              "width": "100px",
-              "zIndex": "999",
+              "position": "relative",
             }
           }
         >
-          <div
-            className="form-group"
+          <a
+            className="w-100"
+            href="#general"
+            onClick={[Function]}
+          >
+            <span>
+              # 
+              general
+            </span>
+          </a>
+          <form
+            onSubmit={[Function]}
+            style={
+              Object {
+                "display": "none",
+                "position": "absolute",
+                "right": "-110px",
+                "top": "0.3em",
+                "width": "100px",
+                "zIndex": "999",
+              }
+            }
           >
             <div
-              className="form-row"
-            >
-              <button
-                className="btn btn-danger"
-                type="submit"
-              >
-                Yes
-              </button>
-              <button
-                className="btn btn-info"
-                onClick={[Function]}
-                type="button"
-              >
-                No
-              </button>
-            </div>
-          </div>
-        </form>
-        <div
-          className="modal"
-        >
-          <div
-            className="modal-dialog"
-          >
-            <div
-              className="modal-content"
+              className="form-group"
             >
               <div
-                className="modal-body"
+                className="form-row"
               >
-                <form
-                  onSubmit={[Function]}
+                <button
+                  className="btn btn-danger"
+                  type="submit"
                 >
-                  <div
-                    className="form-row"
+                  Yes
+                </button>
+                <button
+                  className="btn btn-info"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </form>
+          <div
+            className="modal"
+          >
+            <div
+              className="modal-dialog"
+            >
+              <div
+                className="modal-content"
+              >
+                <div
+                  className="modal-body"
+                >
+                  <form
+                    onSubmit={[Function]}
                   >
-                    <input
-                      className="form-control"
-                      name="name"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onDragStart={[Function]}
-                      onDrop={[Function]}
-                      onFocus={[Function]}
-                      type="text"
-                      value=""
-                    />
-                    <button
-                      className="btn btn-primary btn-block"
-                      data-dismiss="modal"
-                      type="submit"
+                    <div
+                      className="form-row"
                     >
-                      OK
-                    </button>
-                  </div>
-                </form>
+                      <input
+                        className="form-control"
+                        name="name"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onDragStart={[Function]}
+                        onDrop={[Function]}
+                        onFocus={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <button
+                        className="btn btn-primary btn-block"
+                        data-dismiss="modal"
+                        type="submit"
+                      >
+                        OK
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className="list-group-item d-flex justify-content-between"
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        style={
-          Object {
-            "position": "relative",
-          }
-        }
-      >
-        <a
-          className="w-100"
-          href="#random"
-          onClick={[Function]}
-        >
-          <span>
-            # 
-            random
-          </span>
-        </a>
-        <form
-          onSubmit={[Function]}
+        <div
+          className="list-group-item d-flex justify-content-between mb-2 rounded"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
           style={
             Object {
-              "display": "none",
-              "position": "absolute",
-              "right": "-110px",
-              "top": "0.3em",
-              "width": "100px",
-              "zIndex": "999",
+              "position": "relative",
             }
           }
         >
-          <div
-            className="form-group"
+          <a
+            className="w-100"
+            href="#random"
+            onClick={[Function]}
+          >
+            <span>
+              # 
+              random
+            </span>
+          </a>
+          <form
+            onSubmit={[Function]}
+            style={
+              Object {
+                "display": "none",
+                "position": "absolute",
+                "right": "-110px",
+                "top": "0.3em",
+                "width": "100px",
+                "zIndex": "999",
+              }
+            }
           >
             <div
-              className="form-row"
-            >
-              <button
-                className="btn btn-danger"
-                type="submit"
-              >
-                Yes
-              </button>
-              <button
-                className="btn btn-info"
-                onClick={[Function]}
-                type="button"
-              >
-                No
-              </button>
-            </div>
-          </div>
-        </form>
-        <div
-          className="modal"
-        >
-          <div
-            className="modal-dialog"
-          >
-            <div
-              className="modal-content"
+              className="form-group"
             >
               <div
-                className="modal-body"
+                className="form-row"
               >
-                <form
-                  onSubmit={[Function]}
+                <button
+                  className="btn btn-danger"
+                  type="submit"
                 >
-                  <div
-                    className="form-row"
+                  Yes
+                </button>
+                <button
+                  className="btn btn-info"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </form>
+          <div
+            className="modal"
+          >
+            <div
+              className="modal-dialog"
+            >
+              <div
+                className="modal-content"
+              >
+                <div
+                  className="modal-body"
+                >
+                  <form
+                    onSubmit={[Function]}
                   >
-                    <input
-                      className="form-control"
-                      name="name"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onDragStart={[Function]}
-                      onDrop={[Function]}
-                      onFocus={[Function]}
-                      type="text"
-                      value=""
-                    />
-                    <button
-                      className="btn btn-primary btn-block"
-                      data-dismiss="modal"
-                      type="submit"
+                    <div
+                      className="form-row"
                     >
-                      OK
-                    </button>
-                  </div>
-                </form>
+                      <input
+                        className="form-control"
+                        name="name"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onDragStart={[Function]}
+                        onDrop={[Function]}
+                        onFocus={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <button
+                        className="btn btn-primary btn-block"
+                        data-dismiss="modal"
+                        type="submit"
+                      >
+                        OK
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div
-    className="p-3 col-9 h-100 d-flex flex-column justify-content-end align-items-stretch"
-  >
     <div
-      className=""
-    />
-    <form
-      onSubmit={[Function]}
+      className="col-8 col-lg-9 d-flex flex-column justify-content-end"
+      style={
+        Object {
+          "overflow": "hidden",
+        }
+      }
     >
       <div
-        className="form-row"
+        className="d-flex flex-column mb-3"
+        style={
+          Object {
+            "overflowX": "hidden",
+            "overflowY": "scroll",
+          }
+        }
+      >
+        <div />
+      </div>
+      <form
+        className="form-inline mb-3"
+        onSubmit={[Function]}
       >
         <div
-          className="col-9"
+          className="input-group w-100"
         >
           <input
             className="form-control"
@@ -271,20 +286,20 @@ exports[`App 1`] = `
             type="text"
             value=""
           />
-        </div>
-        <div
-          className="col-3"
-        >
-          <button
-            className="btn btn-primary"
-            disabled={true}
-            type="submit"
+          <div
+            className="input-group-append"
           >
-            Send
-          </button>
+            <button
+              className="btn btn-primary"
+              disabled={true}
+              type="submit"
+            >
+              Send
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>
 `;

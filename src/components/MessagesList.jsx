@@ -33,9 +33,11 @@ class MessagesList extends Component {
     this.scrollToBottom();
   }
 
-  scrollToBottom() {
-    this.last.scrollIntoView();
-  }
+  scrollToBottom = () => {
+    if (this.last) {
+      this.last.scrollIntoView();
+    }
+  };
 
   render() {
     const { messages, currentChannelId } = this.props;
