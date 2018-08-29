@@ -25,6 +25,18 @@ class MessagesList extends Component {
     currentChannelId: PropTypes.number.isRequired
   };
 
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    this.last.scrollIntoView();
+  }
+
   render() {
     const { messages, currentChannelId } = this.props;
     return (
@@ -36,6 +48,11 @@ class MessagesList extends Component {
           .map((item) => (
             <Message key={_.uniqueId()} message={item} />
           ))}
+        <div
+          ref={(el) => {
+            this.last = el;
+          }}
+        />
       </div>
     );
   }
