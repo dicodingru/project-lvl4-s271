@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
 const DeleteChannelButton = ({ onClick }) => (
-  <a
-    href="#del"
-    className="badge badge-pill badge-danger d-flex align-items-center"
-    onClick={onClick}>
-    &times;
+  <a href="#delete" onClick={onClick} className="ml-2">
+    <FontAwesomeIcon icon={faTrash} />
   </a>
 );
 
