@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import * as actionCreators from '../actions';
+import connect from '../connect';
 import Error from './Error';
 
 const mapStateToProps = (state) => {
@@ -13,7 +12,7 @@ const mapStateToProps = (state) => {
   return props;
 };
 
-@connect(mapStateToProps, actionCreators)
+@connect(mapStateToProps)
 @reduxForm({ form: 'newMessage' })
 class NewMessageForm extends Component {
   static propTypes = {

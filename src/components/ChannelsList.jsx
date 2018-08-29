@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import connect from '../connect';
 import ChannelLink from './ChannelLink';
-import * as actionCreators from '../actions';
 import NewChannelForm from './NewChannelForm';
 
 const mapStateToProps = (state) => {
@@ -15,7 +14,7 @@ const mapStateToProps = (state) => {
   return props;
 };
 
-@connect(mapStateToProps, actionCreators)
+@connect(mapStateToProps)
 export default class ChannelsList extends Component {
   static propTypes = {
     channels: PropTypes.shape({
