@@ -84,7 +84,8 @@ describe('Store', () => {
   });
 
   test('should delete channel', () => {
-    store.dispatch(actions.deleteChannel({ id: 3 }));
+    store.dispatch(actions.changeCurrentChannel({ id: 3 }));
+    store.dispatch(actions.deleteChannel({ id: 3, generalId: 1 }));
     expect(store.getState().channels).toEqual({
       byId: {
         1: { id: 1, name: 'general', removable: false },
@@ -92,6 +93,7 @@ describe('Store', () => {
       },
       allIds: [1, 2]
     });
+    expect(store.getState().currentChannelId).toEqual(1);
   });
 
   test('should update channel', () => {

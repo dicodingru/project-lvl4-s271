@@ -36,7 +36,12 @@ const messages = handleActions(
 
 const currentChannelId = handleActions(
   {
-    [actions.addChannel](state, { payload: channel }) {
+    [actions.addChannel](
+      state,
+      {
+        payload: { channel }
+      }
+    ) {
       return channel.id;
     },
     [actions.changeCurrentChannel](
@@ -50,10 +55,10 @@ const currentChannelId = handleActions(
     [actions.deleteChannel](
       state,
       {
-        payload: { id }
+        payload: { id, generalId }
       }
     ) {
-      return state === id ? 1 : state;
+      return state === id ? generalId : state;
     }
   },
   null

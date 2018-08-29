@@ -11,7 +11,9 @@ export default (socket, store) => {
   });
   socket.on('removeChannel', ({ data }) => {
     const { id } = data;
-    store.dispatch(deleteChannel({ id }));
+    const { allIds } = store.getState().channels;
+    const generalId = allIds[0];
+    store.dispatch(deleteChannel({ id, generalId }));
   });
   socket.on('renameChannel', ({ data }) => {
     const { attributes } = data;

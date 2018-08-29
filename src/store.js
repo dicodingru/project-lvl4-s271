@@ -6,9 +6,7 @@ import rootReducer from './reducers';
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__;
 /* eslint-enable */
 
-export default (gon) => {
-  const { channels, messages, currentChannelId } = gon;
-
+export default ({ channels, messages, currentChannelId }) => {
   const normalizedChannels = channels.reduce(
     ({ byId, allIds }, channel) => {
       const { id } = channel;
