@@ -50,9 +50,9 @@ export default class ChannelsList extends Component {
       networkErrorState
     } = this.props;
     return (
-      <div className="col-3 h-100 d-flex flex-column justify-content-start align-items-center">
+      <div className="col-4 col-lg-3">
         <NewChannelForm />
-        <div className="list-group w-100">
+        <div className="list-group">
           {allIds.map((id) => {
             const { name, removable } = byId[id];
             return (

@@ -41,19 +41,17 @@ class NewMessageForm extends Component {
     const { handleSubmit, networkErrorState, pristine, submitting } = this.props;
     const isError = networkErrorState === 'failed';
     return (
-      <form onSubmit={handleSubmit(this.send)}>
+      <form className="form-inline mb-3" onSubmit={handleSubmit(this.send)}>
         {isError && <Error />}
-        <div className="form-row">
-          <div className="col-9">
-            <Field
-              className="form-control"
-              name="text"
-              type="text"
-              component="input"
-              required
-            />
-          </div>
-          <div className="col-3">
+        <div className="input-group w-100">
+          <Field
+            className="form-control"
+            name="text"
+            type="text"
+            component="input"
+            required
+          />
+          <div className="input-group-append">
             <button
               className="btn btn-primary"
               type="submit"

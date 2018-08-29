@@ -28,10 +28,14 @@ class MessagesList extends Component {
   render() {
     const { messages, currentChannelId } = this.props;
     return (
-      <div className="">
+      <div
+        style={{ overflowY: 'scroll', overflowX: 'hidden' }}
+        className="d-flex flex-column mb-3">
         {messages
           .filter(({ channelId }) => channelId === currentChannelId)
-          .map((item) => <Message key={_.uniqueId()} message={item} />)}
+          .map((item) => (
+            <Message key={_.uniqueId()} message={item} />
+          ))}
       </div>
     );
   }

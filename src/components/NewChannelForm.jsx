@@ -37,19 +37,17 @@ class NewChannelForm extends Component {
     const { handleSubmit, networkErrorState, pristine, submitting } = this.props;
     const isError = networkErrorState === 'failed';
     return (
-      <form className="mb-4 w-100" onSubmit={handleSubmit(this.add)}>
+      <form className="form-inline" onSubmit={handleSubmit(this.add)}>
         {isError && <Error />}
-        <div className="row d-flex align-items-center justify-content-between">
-          <div className="col-9">
-            <Field
-              className="form-control"
-              name="name"
-              type="text"
-              component="input"
-              required
-            />
-          </div>
-          <div className="col-3">
+        <div className="input-group w-100 mb-3">
+          <Field
+            className="form-control"
+            name="name"
+            type="text"
+            component="input"
+            required
+          />
+          <div className="input-group-append">
             <button
               className="btn btn-success"
               type="submit"

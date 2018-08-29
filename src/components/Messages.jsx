@@ -4,7 +4,9 @@ import NewMessageForm from './NewMessageForm';
 import UserContext from '../user-context';
 
 const Messages = () => (
-  <div className="p-3 col-9 h-100 d-flex flex-column justify-content-end align-items-stretch">
+  <div
+    style={{ overflow: 'hidden' }}
+    className="col-8 col-lg-9 d-flex flex-column justify-content-end">
     <MessagesList />
     <UserContext.Consumer>
       {(username) => <NewMessageForm username={username} />}

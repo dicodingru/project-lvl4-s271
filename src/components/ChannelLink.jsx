@@ -15,13 +15,13 @@ class ChannelLink extends Component {
     handleRemove: PropTypes.func.isRequired,
     handleRename: PropTypes.func.isRequired,
     isRemovable: PropTypes.bool.isRequired,
-    isError: PropTypes.bool.isRequired
+    isError: PropTypes.bool.isRequired,
   };
 
   state = {
     isHovering: false,
     isDeleting: false,
-    isRenaming: false
+    isRenaming: false,
   };
 
   onRemove = () => {
@@ -61,7 +61,9 @@ class ChannelLink extends Component {
       'list-group-item': true,
       'list-group-item-success': isActive,
       'd-flex': true,
-      'justify-content-between': true
+      'justify-content-between': true,
+      'mb-2': true,
+      rounded: true,
     });
     const linkStyle = { position: 'relative' };
     const { isHovering, isDeleting, isRenaming } = this.state;

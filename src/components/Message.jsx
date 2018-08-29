@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Message = (props) => {
   const { message } = props;
   return (
-    <div>
+    <div className="border rounded mt-1 p-1">
       {message.username}: <span>{message.text}</span>
     </div>
   );
