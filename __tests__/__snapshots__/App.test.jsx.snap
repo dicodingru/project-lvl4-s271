@@ -249,22 +249,7 @@ exports[`App 1`] = `
   >
     <div
       className=""
-    >
-      <div>
-        user1
-        : 
-        <span>
-          message1
-        </span>
-      </div>
-      <div>
-        user2
-        : 
-        <span>
-          message2
-        </span>
-      </div>
-    </div>
+    />
     <form
       onSubmit={[Function]}
     >

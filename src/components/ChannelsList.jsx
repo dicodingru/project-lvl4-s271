@@ -18,13 +18,10 @@ const mapStateToProps = (state) => {
 @connect(mapStateToProps, actionCreators)
 export default class ChannelsList extends Component {
   static propTypes = {
-    channels: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        removable: PropTypes.bool
-      })
-    ).isRequired,
+    channels: PropTypes.shape({
+      byId: PropTypes.object,
+      allIds: PropTypes.arrayOf(PropTypes.number)
+    }).isRequired,
     currentChannelId: PropTypes.number.isRequired,
     changeCurrentChannel: PropTypes.func.isRequired,
     removeChannel: PropTypes.func.isRequired,
@@ -48,23 +45,30 @@ export default class ChannelsList extends Component {
   };
 
   render() {
-    const { channels, currentChannelId, networkErrorState } = this.props;
+    const {
+      channels: { byId, allIds },
+      currentChannelId,
+      networkErrorState
+    } = this.props;
     return (
       <div className="col-3 h-100 d-flex flex-column justify-content-start align-items-center">
         <NewChannelForm />
         <div className="list-group w-100">
-          {channels.map(({ id, name, removable }) => (
-            <ChannelLink
-              key={id}
-              name={name}
-              isActive={id === currentChannelId}
-              isRemovable={removable}
-              onClick={this.handleClick(id)}
-              handleRemove={this.handleRemove(id)}
-              handleRename={this.handleRename(id)}
-              isError={networkErrorState === 'failed'}
-            />
-          ))}
+          {allIds.map((id) => {
+            const { name, removable } = byId[id];
+            return (
+              <ChannelLink
+                key={id}
+                name={name}
+                isActive={id === currentChannelId}
+                isRemovable={removable}
+                onClick={this.handleClick(id)}
+                handleRemove={this.handleRemove(id)}
+                handleRename={this.handleRename(id)}
+                isError={networkErrorState === 'failed'}
+              />
+            );
+          })}
         </div>
       </div>
     );

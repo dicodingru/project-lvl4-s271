@@ -1,11 +1,13 @@
 import { createStore } from 'redux';
-import reducers from '../src/reducers';
+import rootReducer from '../src/reducers';
 import * as actions from '../src/actions';
 
 const buildChannel = (id, name) => ({
-  id,
-  name,
-  removable: true
+  channel: {
+    id,
+    name,
+    removable: true
+  }
 });
 
 const buildMessage = (id, channelId, username) => ({
@@ -16,11 +18,14 @@ const buildMessage = (id, channelId, username) => ({
 });
 
 const initialState = {
-  channels: [
-    { id: 1, name: 'general', removable: false },
-    { id: 2, name: 'random', removable: false },
-    { id: 3, name: 'qa', removable: true }
-  ],
+  channels: {
+    byId: {
+      1: { id: 1, name: 'general', removable: false },
+      2: { id: 2, name: 'random', removable: false },
+      3: { id: 3, name: 'qa', removable: true }
+    },
+    allIds: [1, 2, 3]
+  },
   messages: [],
   currentChannelId: 1,
   form: {},
@@ -31,16 +36,19 @@ describe('Store', () => {
   let store;
 
   beforeEach(() => {
-    store = createStore(reducers, initialState);
+    store = createStore(rootReducer, initialState);
   });
 
   test('should match initial state', () => {
     expect(store.getState()).toEqual({
-      channels: [
-        { id: 1, name: 'general', removable: false },
-        { id: 2, name: 'random', removable: false },
-        { id: 3, name: 'qa', removable: true }
-      ],
+      channels: {
+        byId: {
+          1: { id: 1, name: 'general', removable: false },
+          2: { id: 2, name: 'random', removable: false },
+          3: { id: 3, name: 'qa', removable: true }
+        },
+        allIds: [1, 2, 3]
+      },
       messages: [],
       currentChannelId: 1,
       form: {},
@@ -49,14 +57,17 @@ describe('Store', () => {
   });
 
   test('should add channel', () => {
-    const channel1 = buildChannel(4, 'test');
-    store.dispatch(actions.addChannel(channel1));
-    expect(store.getState().channels).toEqual([
-      { id: 1, name: 'general', removable: false },
-      { id: 2, name: 'random', removable: false },
-      { id: 3, name: 'qa', removable: true },
-      { id: 4, name: 'test', removable: true }
-    ]);
+    const channel = buildChannel(4, 'test');
+    store.dispatch(actions.addChannel(channel));
+    expect(store.getState().channels).toEqual({
+      byId: {
+        1: { id: 1, name: 'general', removable: false },
+        2: { id: 2, name: 'random', removable: false },
+        3: { id: 3, name: 'qa', removable: true },
+        4: { id: 4, name: 'test', removable: true }
+      },
+      allIds: [1, 2, 3, 4]
+    });
   });
 
   test('should change current channel', () => {
@@ -74,19 +85,26 @@ describe('Store', () => {
 
   test('should delete channel', () => {
     store.dispatch(actions.deleteChannel({ id: 3 }));
-    expect(store.getState().channels).toEqual([
-      { id: 1, name: 'general', removable: false },
-      { id: 2, name: 'random', removable: false }
-    ]);
+    expect(store.getState().channels).toEqual({
+      byId: {
+        1: { id: 1, name: 'general', removable: false },
+        2: { id: 2, name: 'random', removable: false }
+      },
+      allIds: [1, 2]
+    });
   });
 
   test('should update channel', () => {
-    store.dispatch(actions.updateChannel({ id: 3, name: 'new', removable: true }));
-    expect(store.getState().channels).toEqual([
-      { id: 1, name: 'general', removable: false },
-      { id: 2, name: 'random', removable: false },
-      { id: 3, name: 'new', removable: true }
-    ]);
+    const channel = buildChannel(3, 'new');
+    store.dispatch(actions.updateChannel(channel));
+    expect(store.getState().channels).toEqual({
+      byId: {
+        1: { id: 1, name: 'general', removable: false },
+        2: { id: 2, name: 'random', removable: false },
+        3: { id: 3, name: 'new', removable: true }
+      },
+      allIds: [1, 2, 3]
+    });
   });
 
   test('should change network error states', () => {

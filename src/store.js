@@ -9,7 +9,28 @@ const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__;
 export default (gon) => {
   const { channels, messages, currentChannelId } = gon;
 
-  const initialState = { channels, messages, currentChannelId };
+  const normalizedChannels = channels.reduce(
+    ({ byId, allIds }, channel) => {
+      const { id } = channel;
+      return {
+        byId: {
+          ...byId,
+          [id]: channel
+        },
+        allIds: [...allIds, id]
+      };
+    },
+    {
+      byId: {},
+      allIds: []
+    }
+  );
+
+  const initialState = {
+    channels: normalizedChannels,
+    messages,
+    currentChannelId
+  };
 
   const store = createStore(
     rootReducer,

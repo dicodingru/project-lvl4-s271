@@ -7,7 +7,7 @@ export default (socket, store) => {
   });
   socket.on('newChannel', ({ data }) => {
     const { attributes } = data;
-    store.dispatch(addChannel({ ...attributes }));
+    store.dispatch(addChannel({ channel: attributes }));
   });
   socket.on('removeChannel', ({ data }) => {
     const { id } = data;
@@ -15,6 +15,6 @@ export default (socket, store) => {
   });
   socket.on('renameChannel', ({ data }) => {
     const { attributes } = data;
-    store.dispatch(updateChannel({ ...attributes }));
+    store.dispatch(updateChannel({ channel: attributes }));
   });
 };

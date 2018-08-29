@@ -8,14 +8,14 @@ import rootReducer from '../src/reducers';
 import UserContext from '../src/user-context';
 
 const initialState = {
-  channels: [
-    { id: 1, name: 'general', removable: false },
-    { id: 2, name: 'random', removable: false }
-  ],
-  messages: [
-    { id: 1, channelId: 1, username: 'user1', text: 'message1' },
-    { id: 2, channelId: 1, username: 'user2', text: 'message2' }
-  ],
+  channels: {
+    byId: {
+      1: { id: 1, name: 'general', removable: false },
+      2: { id: 2, name: 'random', removable: false }
+    },
+    allIds: [1, 2]
+  },
+  messages: [],
   currentChannelId: 1
 };
 const store = createStore(rootReducer, initialState);
