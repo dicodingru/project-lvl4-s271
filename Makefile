@@ -11,6 +11,9 @@ build:
 	npm run build
 	npm run webpack -- -p --env production && babel frontend --out-dir dist --source-maps inline
 
+analyze:
+	npm run webpack -- -p --env production --config analyze.config.js
+
 test:
 	npm test
 
