@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
+import { Form, InputGroup, InputGroupAddon, Button } from 'reactstrap';
 import connect from '../connect';
 
 const mapStateToProps = ({ currentChannelId }) => {
@@ -25,20 +26,22 @@ class NewMessageForm extends Component {
 
   send = ({ text }) => {
     const { username, currentChannelId, sendMessage, reset } = this.props;
+
     const data = {
       attributes: {
         username,
         text
       }
     };
+
     return sendMessage(data, currentChannelId, reset);
   };
 
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
     return (
-      <form className="form-inline mb-3" onSubmit={handleSubmit(this.send)}>
-        <div className="input-group w-100">
+      <Form className="mb-3" onSubmit={handleSubmit(this.send)}>
+        <InputGroup>
           <Field
             className="form-control"
             name="text"
@@ -46,16 +49,13 @@ class NewMessageForm extends Component {
             component="input"
             required
           />
-          <div className="input-group-append">
-            <button
-              className="btn btn-primary"
-              type="submit"
-              disabled={pristine || submitting}>
+          <InputGroupAddon addonType="append">
+            <Button color="primary" disabled={pristine || submitting}>
               Send
-            </button>
-          </div>
-        </div>
-      </form>
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
+      </Form>
     );
   }
 }

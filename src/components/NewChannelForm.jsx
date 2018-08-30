@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
+import { Form, InputGroup, InputGroupAddon, Button } from 'reactstrap';
 import connect from '../connect';
 
 @connect()
@@ -27,8 +28,8 @@ class NewChannelForm extends Component {
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
     return (
-      <form className="form-inline" onSubmit={handleSubmit(this.add)}>
-        <div className="input-group w-100 mb-3">
+      <Form onSubmit={handleSubmit(this.add)}>
+        <InputGroup className="mb-3">
           <Field
             className="form-control"
             name="name"
@@ -36,16 +37,13 @@ class NewChannelForm extends Component {
             component="input"
             required
           />
-          <div className="input-group-append">
-            <button
-              className="btn btn-success"
-              type="submit"
-              disabled={pristine || submitting}>
+          <InputGroupAddon addonType="append">
+            <Button color="success" disabled={pristine || submitting}>
               Add
-            </button>
-          </div>
-        </div>
-      </form>
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
+      </Form>
     );
   }
 }

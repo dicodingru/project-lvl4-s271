@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
+import { Button, Modal, ModalBody, Form, FormGroup } from 'reactstrap';
+
 import connect from '../connect';
 
 const mapStateToProps = ({ channelRemoveId }) => {
@@ -27,8 +29,8 @@ class RemoveChannelForm extends Component {
 
   remove = () => {
     const { channelRemoveId, removeChannel, endChannelRemove } = this.props;
-    removeChannel(channelRemoveId);
     endChannelRemove();
+    return removeChannel(channelRemoveId);
   };
 
   cancel = () => {
@@ -40,26 +42,19 @@ class RemoveChannelForm extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className="modal d-block w-25 mx-auto">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-body">
-              <form onSubmit={handleSubmit(this.remove)}>
-                <div className="form-group">
-                  <div className="form-row justify-content-around">
-                    <button type="submit" className="btn btn-danger">
-                      Yes
-                    </button>
-                    <button type="button" className="btn btn-info" onClick={this.cancel}>
-                      No
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Modal contentClassName="bg-secondary" size="sm" isOpen centered fade={false}>
+        <ModalBody>
+          <h3 className="text-center">Are you sure?</h3>
+          <Form onSubmit={handleSubmit(this.remove)}>
+            <FormGroup row className="justify-content-around">
+              <Button color="danger">Yes</Button>
+              <Button color="success" onClick={this.cancel}>
+                No
+              </Button>
+            </FormGroup>
+          </Form>
+        </ModalBody>
+      </Modal>
     );
   }
 }

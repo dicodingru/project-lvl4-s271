@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Col, ListGroup } from 'reactstrap';
 import connect from '../connect';
 import ChannelLink from './ChannelLink';
 import NewChannelForm from './NewChannelForm';
@@ -30,18 +31,19 @@ export default class ChannelsList extends Component {
       channelRemoveId,
       channelRenameId
     } = this.props;
+
     return (
-      <div className="col-4 col-lg-3">
+      <Col xs="4" lg="3">
         <NewChannelForm />
-        <div className="list-group">
+        <ListGroup>
           {allIds.map((id) => {
             const channel = byId[id];
             return <ChannelLink key={id} {...channel} />;
           })}
-        </div>
+        </ListGroup>
         {channelRemoveId && <RemoveChannelForm />}
         {channelRenameId && <RenameChannelForm />}
-      </div>
+      </Col>
     );
   }
 }
