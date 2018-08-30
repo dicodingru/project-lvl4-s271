@@ -1,50 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import DeleteChannelButton from './DeleteChannelButton';
-import DeleteChannelForm from './DeleteChannelForm';
+import RemoveChannelButton from './RemoveChannelButton';
 import RenameChannelButton from './RenameChannelButton';
-import RenameChannelForm from './RenameChannelForm';
-import Error from './Error';
+import connect from '../connect';
 
+const mapStateToProps = (state) => {
+  const props = {
+    currentChannelId: state.currentChannelId
+  };
+  return props;
+};
+
+@connect(mapStateToProps)
 class ChannelLink extends Component {
   static propTypes = {
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    isActive: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired,
-    handleRemove: PropTypes.func.isRequired,
-    handleRename: PropTypes.func.isRequired,
-    isRemovable: PropTypes.bool.isRequired,
-    isError: PropTypes.bool.isRequired,
+    removable: PropTypes.bool.isRequired,
+    currentChannelId: PropTypes.number.isRequired,
+    changeCurrentChannel: PropTypes.func.isRequired,
+    startChannelRemove: PropTypes.func.isRequired,
+    startChannelRename: PropTypes.func.isRequired
   };
 
   state = {
-    isHovering: false,
-    isDeleting: false,
-    isRenaming: false,
+    isHovering: false
   };
 
-  onRemove = () => {
-    const { handleRemove } = this.props;
-    return handleRemove();
+  onClick = () => {
+    const { id, changeCurrentChannel } = this.props;
+    changeCurrentChannel({ id });
   };
 
-  onRename = (data) => {
-    const { handleRename } = this.props;
-    handleRename(data);
-    this.setState({ isRenaming: false });
+  onClickRemove = () => {
+    const { id, startChannelRemove } = this.props;
+    this.setState({ isHovering: false });
+    startChannelRemove({ id });
   };
 
-  onCancel = () => {
-    this.setState({ isDeleting: false, isHovering: false });
-  };
-
-  onDelete = () => {
-    this.setState({ isDeleting: true });
-  };
-
-  onEdit = () => {
-    this.setState({ isRenaming: true, isHovering: false });
+  onClickRename = () => {
+    const { id, startChannelRename } = this.props;
+    this.setState({ isHovering: false });
+    startChannelRename({ id });
   };
 
   setHoverState = () => {
@@ -56,36 +54,32 @@ class ChannelLink extends Component {
   };
 
   render() {
-    const { name, isActive, onClick, isRemovable, isError } = this.props;
+    const { isHovering } = this.state;
+    const { id, name, removable, currentChannelId } = this.props;
+    const showButtons = removable && isHovering;
+
     const linkClass = cn({
       'list-group-item': true,
-      'list-group-item-success': isActive,
+      'list-group-item-success': id === currentChannelId,
       'd-flex': true,
       'justify-content-between': true,
       'mb-2': true,
-      rounded: true,
+      rounded: true
     });
+
     const linkStyle = { position: 'relative' };
-    const { isHovering, isDeleting, isRenaming } = this.state;
-    const showButtons = isRemovable && isHovering;
+
     return (
       <div
         className={linkClass}
         style={linkStyle}
         onMouseEnter={this.setHoverState}
         onMouseLeave={this.unsetHoverState}>
-        <a className="w-100" href={`#${name}`} onClick={onClick}>
+        <a className="w-100" href={`#${name}`} onClick={this.onClick}>
           <span># {name}</span>
         </a>
-        {showButtons && <RenameChannelButton onClick={this.onEdit} />}
-        {showButtons && <DeleteChannelButton onClick={this.onDelete} />}
-        <DeleteChannelForm
-          onRemove={this.onRemove}
-          onCancel={this.onCancel}
-          isDeleting={isDeleting}
-        />
-        <RenameChannelForm onRename={this.onRename} isRenaming={isRenaming} />
-        {isError && <Error />}
+        {showButtons && <RenameChannelButton onClick={this.onClickRename} />}
+        {showButtons && <RemoveChannelButton onClick={this.onClickRemove} />}
       </div>
     );
   }

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
-const DeleteChannelButton = ({ onClick }) => (
+const RemoveChannelButton = ({ onClick }) => (
   <a href="#delete" onClick={onClick} className="ml-2">
     <FontAwesomeIcon icon={faTrash} />
   </a>
 );
 
-DeleteChannelButton.propTypes = {
+RemoveChannelButton.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-export default DeleteChannelButton;
+export default RemoveChannelButton;

@@ -64,11 +64,47 @@ const currentChannelId = handleActions(
   null
 );
 
+const channelRemoveId = handleActions(
+  {
+    [actions.startChannelRemove](
+      state,
+      {
+        payload: { id }
+      }
+    ) {
+      return id;
+    },
+    [actions.endChannelRemove]() {
+      return null;
+    }
+  },
+  null
+);
+
+const channelRenameId = handleActions(
+  {
+    [actions.startChannelRename](
+      state,
+      {
+        payload: { id }
+      }
+    ) {
+      return id;
+    },
+    [actions.endChannelRename]() {
+      return null;
+    }
+  },
+  null
+);
+
 const rootReducer = combineReducers({
   networkErrorState,
   messages,
   channels,
   currentChannelId,
+  channelRemoveId,
+  channelRenameId,
   form: formReducer
 });
 
