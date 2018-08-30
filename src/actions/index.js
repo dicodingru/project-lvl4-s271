@@ -34,6 +34,8 @@ export const createChannel = (data, reset) => async (dispatch) => {
 };
 
 export const deleteChannel = createAction('CHANNEL_DELETE');
+export const startChannelRemove = createAction('CHANNEL_REMOVE_START');
+export const endChannelRemove = createAction('CHANNEL_REMOVE_END');
 export const removeChannel = (id) => async (dispatch) => {
   try {
     const url = routes.channelUrl(id);
@@ -44,7 +46,10 @@ export const removeChannel = (id) => async (dispatch) => {
 };
 
 export const updateChannel = createAction('CHANNEL_UPDATE');
+export const startChannelRename = createAction('CHANNEL_RENAME_START');
+export const endChannelRename = createAction('CHANNEL_RENAME_END');
 export const renameChannel = (id, data) => async (dispatch) => {
+  /** */ console.log(id, data);
   try {
     const url = routes.channelUrl(id);
     await axios.patch(url, { data });
@@ -66,5 +71,9 @@ export default {
   createChannel,
   removeChannel,
   renameChannel,
+  startChannelRemove,
+  endChannelRemove,
+  startChannelRename,
+  endChannelRename,
   changeCurrentChannel
 };
