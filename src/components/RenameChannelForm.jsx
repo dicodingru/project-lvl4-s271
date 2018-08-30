@@ -33,8 +33,22 @@ class RenameChannelForm extends Component {
   name = React.createRef();
 
   componentDidMount() {
-    this.name.current.getRenderedComponent().select();
+    const field = this.name.current.getRenderedComponent();
+    field.select();
+    field.addEventListener('keydown', this.handleEscPress);
   }
+
+  componentWillUnmount() {
+    const field = this.name.current.getRenderedComponent();
+    field.removeEventListener('keydown', this.handleEscPress);
+  }
+
+  handleEscPress = (e) => {
+    const { endChannelRename } = this.props;
+    if (e.key === 'Escape') {
+      endChannelRename();
+    }
+  };
 
   rename = ({ name }) => {
     const { channelRenameId, renameChannel, endChannelRename } = this.props;
