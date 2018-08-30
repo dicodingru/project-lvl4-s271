@@ -89,6 +89,7 @@ exports[`App 1`] = `
       className="d-flex flex-column justify-content-end col-8 col-lg-9"
       style={
         Object {
+          "maxHeight": "100%",
           "overflow": "hidden",
         }
       }
