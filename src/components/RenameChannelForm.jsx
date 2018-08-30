@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
+import { Button, Col, Modal, ModalBody, Form, FormGroup } from 'reactstrap';
 import connect from '../connect';
 
 const mapStateToProps = ({ channels: { byId }, channelRenameId }) => {
@@ -18,6 +19,8 @@ const mapStateToProps = ({ channels: { byId }, channelRenameId }) => {
 class RenameChannelForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
+    pristine: PropTypes.bool.isRequired,
+    submitting: PropTypes.bool.isRequired,
     renameChannel: PropTypes.func.isRequired,
     endChannelRename: PropTypes.func.isRequired,
     channelRenameId: PropTypes.number
@@ -34,8 +37,8 @@ class RenameChannelForm extends Component {
         name
       }
     };
-    renameChannel(channelRenameId, data);
     endChannelRename();
+    return renameChannel(channelRenameId, data);
   };
 
   cancel = () => {
@@ -44,35 +47,34 @@ class RenameChannelForm extends Component {
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
 
     return (
-      <div className="modal d-block w-25 mx-auto">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-body">
-              <form onSubmit={handleSubmit(this.rename)}>
-                <div className="form-row mb-2">
-                  <Field
-                    className="form-control"
-                    name="name"
-                    component="input"
-                    type="text"
-                  />
-                </div>
-                <div className="form-row justify-content-around">
-                  <button type="button" className="btn btn-info" onClick={this.cancel}>
-                    Cancel
-                  </button>
-                  <button type="submit" className="btn btn-danger" data-dismiss="modal">
-                    Rename
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Modal contentClassName="bg-secondary" size="sm" isOpen centered fade={false}>
+        <ModalBody>
+          <Form onSubmit={handleSubmit(this.rename)}>
+            <FormGroup row className="mb-2">
+              <Col>
+                <Field
+                  className="form-control"
+                  name="name"
+                  component="input"
+                  type="text"
+                  required
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup row className="justify-content-around">
+              <Button color="success" onClick={this.cancel}>
+                Cancel
+              </Button>
+              <Button color="danger" disabled={pristine || submitting}>
+                Rename
+              </Button>
+            </FormGroup>
+          </Form>
+        </ModalBody>
+      </Modal>
     );
   }
 }

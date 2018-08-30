@@ -1,17 +1,20 @@
 import React from 'react';
+import { Col } from 'reactstrap';
 import MessagesList from './MessagesList';
 import NewMessageForm from './NewMessageForm';
 import UserContext from '../user-context';
 
 const Messages = () => (
-  <div
+  <Col
+    xs="8"
+    lg="9"
     style={{ overflow: 'hidden' }}
-    className="col-8 col-lg-9 d-flex flex-column justify-content-end">
+    className="d-flex flex-column justify-content-end">
     <MessagesList />
     <UserContext.Consumer>
       {(username) => <NewMessageForm username={username} />}
     </UserContext.Consumer>
-  </div>
+  </Col>
 );
 
 export default Messages;

@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Message = (props) => {
-  const { message } = props;
+  const {
+    message: { username, text }
+  } = props;
   return (
     <div className="border rounded mt-1 p-1">
-      {message.username}: <span>{message.text}</span>
+      {username}: <span>{text}</span>
     </div>
   );
 };

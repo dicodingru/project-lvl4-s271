@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
+import { ListGroupItem } from 'reactstrap';
 import RemoveChannelButton from './RemoveChannelButton';
 import RenameChannelButton from './RenameChannelButton';
 import connect from '../connect';
@@ -57,22 +57,12 @@ class ChannelLink extends Component {
     const { isHovering } = this.state;
     const { id, name, removable, currentChannelId } = this.props;
     const showButtons = removable && isHovering;
-
-    const linkClass = cn({
-      'list-group-item': true,
-      'list-group-item-success': id === currentChannelId,
-      'd-flex': true,
-      'justify-content-between': true,
-      'mb-2': true,
-      rounded: true
-    });
-
-    const linkStyle = { position: 'relative' };
+    const linkColor = id === currentChannelId ? 'success' : '';
 
     return (
-      <div
-        className={linkClass}
-        style={linkStyle}
+      <ListGroupItem
+        color={linkColor}
+        className="d-flex justify-content-between mb-2 rounded"
         onMouseEnter={this.setHoverState}
         onMouseLeave={this.unsetHoverState}>
         <a className="w-100" href={`#${name}`} onClick={this.onClick}>
@@ -80,7 +70,7 @@ class ChannelLink extends Component {
         </a>
         {showButtons && <RenameChannelButton onClick={this.onClickRename} />}
         {showButtons && <RemoveChannelButton onClick={this.onClickRemove} />}
-      </div>
+      </ListGroupItem>
     );
   }
 }

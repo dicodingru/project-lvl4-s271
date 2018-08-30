@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Alert } from 'reactstrap';
 import connect from '../connect';
 
 const mapStateToProps = ({ networkErrorState }) => {
@@ -16,13 +17,11 @@ class Error extends Component {
   render() {
     const { networkErrorState } = this.props;
     return (
-      <div>
-        {networkErrorState && (
-          <div className="fixed-top alert alert-warning" role="alert">
-            Something went wrong! Check your internet connection!
-          </div>
-        )}
-      </div>
+      networkErrorState && (
+        <Alert color="warning" className="fixed-top">
+          Something went wrong! Check your internet connection!
+        </Alert>
+      )
     );
   }
 }
