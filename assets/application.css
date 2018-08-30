@@ -9,3 +9,7 @@ body {
 .container-fluid, #chat {
   height: 100%;
 }
+
+input:required {
+  box-shadow: none;
+}
