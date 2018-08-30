@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import connect from '../connect';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ channels: { byId }, channelRenameId }) => {
   const props = {
-    channelRenameId: state.channelRenameId
+    channelRenameId,
+    initialValues: { name: byId[channelRenameId].name }
   };
   return props;
 };
@@ -37,6 +38,11 @@ class RenameChannelForm extends Component {
     endChannelRename();
   };
 
+  cancel = () => {
+    const { endChannelRename } = this.props;
+    endChannelRename();
+  };
+
   render() {
     const { handleSubmit } = this.props;
 
@@ -46,18 +52,20 @@ class RenameChannelForm extends Component {
           <div className="modal-content">
             <div className="modal-body">
               <form onSubmit={handleSubmit(this.rename)}>
-                <div className="form-row">
+                <div className="form-row mb-2">
                   <Field
                     className="form-control"
                     name="name"
                     component="input"
                     type="text"
                   />
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-block"
-                    data-dismiss="modal">
-                    OK
+                </div>
+                <div className="form-row justify-content-around">
+                  <button type="button" className="btn btn-info" onClick={this.cancel}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn btn-danger" data-dismiss="modal">
+                    Rename
                   </button>
                 </div>
               </form>

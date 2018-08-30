@@ -1,6 +1,7 @@
 import React from 'react';
 import ChannelsList from './ChannelsList';
 import Messages from './Messages';
+import Error from './Error';
 
 const Root = () => (
   <div className="container-fluid">
@@ -8,6 +9,7 @@ const Root = () => (
       <ChannelsList />
       <Messages />
     </div>
+    <Error />
   </div>
 );
 

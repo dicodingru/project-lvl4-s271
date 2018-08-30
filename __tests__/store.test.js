@@ -31,7 +31,7 @@ const initialState = {
   channelRemoveId: null,
   channelRenameId: null,
   form: {},
-  networkErrorState: 'none'
+  networkErrorState: false
 };
 
 describe('Store', () => {
@@ -56,7 +56,7 @@ describe('Store', () => {
       channelRemoveId: null,
       channelRenameId: null,
       form: {},
-      networkErrorState: 'none'
+      networkErrorState: false
     });
   });
 
@@ -115,10 +115,10 @@ describe('Store', () => {
 
   test('should change network error states', () => {
     store.dispatch(actions.setNetworkErrorState());
-    expect(store.getState().networkErrorState).toEqual('failed');
+    expect(store.getState().networkErrorState).toEqual(true);
 
     store.dispatch(actions.clearNetworkErrorState());
-    expect(store.getState().networkErrorState).toEqual('none');
+    expect(store.getState().networkErrorState).toEqual(false);
 
     store.dispatch(actions.startChannelRemove({ id: 3 }));
     expect(store.getState().channelRemoveId).toEqual(3);

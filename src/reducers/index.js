@@ -8,13 +8,13 @@ import channels from './channels';
 const networkErrorState = handleActions(
   {
     [actions.clearNetworkErrorState]() {
-      return 'none';
+      return false;
     },
     [actions.setNetworkErrorState]() {
-      return 'failed';
+      return true;
     }
   },
-  'none'
+  false
 );
 
 const messages = handleActions(

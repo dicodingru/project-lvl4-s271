@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import connect from '../connect';
-import Error from './Error';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -15,7 +14,6 @@ const mapStateToProps = (state) => {
 @reduxForm({ form: 'newChannel' })
 class NewChannelForm extends Component {
   static propTypes = {
-    networkErrorState: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
@@ -34,11 +32,9 @@ class NewChannelForm extends Component {
   };
 
   render() {
-    const { handleSubmit, networkErrorState, pristine, submitting } = this.props;
-    const isError = networkErrorState === 'failed';
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
       <form className="form-inline" onSubmit={handleSubmit(this.add)}>
-        {isError && <Error />}
         <div className="input-group w-100 mb-3">
           <Field
             className="form-control"

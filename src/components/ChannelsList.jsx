@@ -5,7 +5,6 @@ import ChannelLink from './ChannelLink';
 import NewChannelForm from './NewChannelForm';
 import RemoveChannelForm from './RemoveChannelForm';
 import RenameChannelForm from './RenameChannelForm';
-import Error from './Error';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -42,7 +41,6 @@ export default class ChannelsList extends Component {
         </div>
         {channelRemoveId && <RemoveChannelForm />}
         {channelRenameId && <RenameChannelForm />}
-        {/* <Error /> */}
       </div>
     );
   }

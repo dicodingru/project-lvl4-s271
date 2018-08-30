@@ -147,5 +147,6 @@ exports[`App 1`] = `
       </form>
     </div>
   </div>
+  <div />
 </div>
 `;
