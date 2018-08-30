@@ -28,6 +28,8 @@ const initialState = {
   },
   messages: [],
   currentChannelId: 1,
+  channelRemoveId: null,
+  channelRenameId: null,
   form: {},
   networkErrorState: 'none'
 };
@@ -51,6 +53,8 @@ describe('Store', () => {
       },
       messages: [],
       currentChannelId: 1,
+      channelRemoveId: null,
+      channelRenameId: null,
       form: {},
       networkErrorState: 'none'
     });
@@ -115,5 +119,17 @@ describe('Store', () => {
 
     store.dispatch(actions.clearNetworkErrorState());
     expect(store.getState().networkErrorState).toEqual('none');
+
+    store.dispatch(actions.startChannelRemove({ id: 3 }));
+    expect(store.getState().channelRemoveId).toEqual(3);
+
+    store.dispatch(actions.endChannelRemove());
+    expect(store.getState().channelRemoveId).toEqual(null);
+
+    store.dispatch(actions.startChannelRename({ id: 3 }));
+    expect(store.getState().channelRenameId).toEqual(3);
+
+    store.dispatch(actions.endChannelRename());
+    expect(store.getState().channelRenameId).toEqual(null);
   });
 });
