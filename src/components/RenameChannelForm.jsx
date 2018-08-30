@@ -30,6 +30,12 @@ class RenameChannelForm extends Component {
     channelRenameId: null
   };
 
+  name = React.createRef();
+
+  componentDidMount() {
+    this.name.current.getRenderedComponent().select();
+  }
+
   rename = ({ name }) => {
     const { channelRenameId, renameChannel, endChannelRename } = this.props;
     const data = {
@@ -60,7 +66,9 @@ class RenameChannelForm extends Component {
                   name="name"
                   component="input"
                   type="text"
+                  ref={this.name}
                   required
+                  withRef
                 />
               </Col>
             </FormGroup>
