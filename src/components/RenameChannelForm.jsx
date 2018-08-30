@@ -66,34 +66,43 @@ class RenameChannelForm extends Component {
     endChannelRename();
   };
 
+  renderInputField = () => (
+    <Field
+      className="form-control"
+      name="name"
+      component="input"
+      type="text"
+      ref={this.name}
+      required
+      withRef
+    />
+  );
+
+  renderButtons = () => {
+    const { pristine, submitting } = this.props;
+    return (
+      <FormGroup row className="justify-content-around">
+        <Button color="success" onClick={this.cancel}>
+          Cancel
+        </Button>
+        <Button color="danger" disabled={pristine || submitting}>
+          Rename
+        </Button>
+      </FormGroup>
+    );
+  };
+
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
+    const { handleSubmit } = this.props;
 
     return (
       <Modal contentClassName="bg-secondary" size="sm" isOpen centered fade={false}>
         <ModalBody>
           <Form onSubmit={handleSubmit(this.rename)}>
             <FormGroup row className="mb-2">
-              <Col>
-                <Field
-                  className="form-control"
-                  name="name"
-                  component="input"
-                  type="text"
-                  ref={this.name}
-                  required
-                  withRef
-                />
-              </Col>
+              <Col>{this.renderInputField()}</Col>
             </FormGroup>
-            <FormGroup row className="justify-content-around">
-              <Button color="success" onClick={this.cancel}>
-                Cancel
-              </Button>
-              <Button color="danger" disabled={pristine || submitting}>
-                Rename
-              </Button>
-            </FormGroup>
+            {this.renderButtons()}
           </Form>
         </ModalBody>
       </Modal>
