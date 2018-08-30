@@ -5,9 +5,9 @@ import RemoveChannelButton from './RemoveChannelButton';
 import RenameChannelButton from './RenameChannelButton';
 import connect from '../connect';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ currentChannelId }) => {
   const props = {
-    currentChannelId: state.currentChannelId
+    currentChannelId
   };
   return props;
 };

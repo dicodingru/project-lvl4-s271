@@ -4,10 +4,10 @@ import _ from 'lodash';
 import connect from '../connect';
 import Message from './Message';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ messages, currentChannelId }) => {
   const props = {
-    messages: state.messages,
-    currentChannelId: state.currentChannelId
+    messages,
+    currentChannelId
   };
   return props;
 };

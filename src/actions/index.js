@@ -49,7 +49,6 @@ export const updateChannel = createAction('CHANNEL_UPDATE');
 export const startChannelRename = createAction('CHANNEL_RENAME_START');
 export const endChannelRename = createAction('CHANNEL_RENAME_END');
 export const renameChannel = (id, data) => async (dispatch) => {
-  /** */ console.log(id, data);
   try {
     const url = routes.channelUrl(id);
     await axios.patch(url, { data });

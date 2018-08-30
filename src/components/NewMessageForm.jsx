@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import connect from '../connect';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ currentChannelId }) => {
   const props = {
-    currentChannelId: state.currentChannelId,
-    networkErrorState: state.networkErrorState
+    currentChannelId
   };
   return props;
 };

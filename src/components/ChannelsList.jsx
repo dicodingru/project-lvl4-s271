@@ -6,11 +6,11 @@ import NewChannelForm from './NewChannelForm';
 import RemoveChannelForm from './RemoveChannelForm';
 import RenameChannelForm from './RenameChannelForm';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ channels, channelRemoveId, channelRenameId }) => {
   const props = {
-    channels: state.channels,
-    channelRemoveId: state.channelRemoveId,
-    channelRenameId: state.channelRenameId
+    channels,
+    channelRemoveId,
+    channelRenameId
   };
   return props;
 };

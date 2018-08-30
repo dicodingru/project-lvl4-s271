@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import connect from '../connect';
 
-const mapStateToProps = (state) => {
-  const props = {
-    networkErrorState: state.networkErrorState
-  };
-  return props;
-};
-
-@connect(mapStateToProps)
+@connect()
 @reduxForm({ form: 'newChannel' })
 class NewChannelForm extends Component {
   static propTypes = {
