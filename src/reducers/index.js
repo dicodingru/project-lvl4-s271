@@ -36,14 +36,6 @@ const messages = handleActions(
 
 const currentChannelId = handleActions(
   {
-    [actions.addChannel](
-      state,
-      {
-        payload: { channel }
-      }
-    ) {
-      return channel.id;
-    },
     [actions.changeCurrentChannel](
       state,
       {
