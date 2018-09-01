@@ -60,6 +60,11 @@ exports[`App 1`] = `
             className="w-100"
             href="#general"
             onClick={[Function]}
+            style={
+              Object {
+                "outline": 0,
+              }
+            }
           >
             <span>
               # 
@@ -76,6 +81,11 @@ exports[`App 1`] = `
             className="w-100"
             href="#random"
             onClick={[Function]}
+            style={
+              Object {
+                "outline": 0,
+              }
+            }
           >
             <span>
               # 

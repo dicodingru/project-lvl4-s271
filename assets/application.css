@@ -10,10 +10,6 @@ body {
   height: 100%;
 }
 
-input:required {
+input:invalid {
   box-shadow: none;
-}
-
-a {
-  outline: 0;
 }

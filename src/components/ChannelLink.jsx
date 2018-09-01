@@ -58,6 +58,7 @@ class ChannelLink extends Component {
     const { id, name, removable, currentChannelId } = this.props;
     const showButtons = removable && isHovering;
     const linkColor = id === currentChannelId ? 'success' : '';
+    const anchorStyle = { outline: 0 };
 
     return (
       <ListGroupItem
@@ -65,7 +66,7 @@ class ChannelLink extends Component {
         className="d-flex justify-content-between mb-2 rounded"
         onMouseEnter={this.setHoverState}
         onMouseLeave={this.unsetHoverState}>
-        <a className="w-100" href={`#${name}`} onClick={this.onClick}>
+        <a className="w-100" style={anchorStyle} href={`#${name}`} onClick={this.onClick}>
           <span># {name}</span>
         </a>
         {showButtons && <RenameChannelButton onClick={this.onClickRename} />}
