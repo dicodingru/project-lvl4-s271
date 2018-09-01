@@ -61,6 +61,7 @@
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.2",
+    "react-hot-keys": "^1.2.0",
     "react-redux": "^5.0.7",
     "reactstrap": "^6.4.0",
     "redux": "^4.0.0",

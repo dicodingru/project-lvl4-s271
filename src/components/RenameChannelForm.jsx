@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import { Button, Col, Modal, ModalBody, Form, FormGroup } from 'reactstrap';
+import Hotkeys from 'react-hot-keys';
 import connect from '../connect';
 
 const mapStateToProps = ({ channels: { byId }, channelRenameId }) => {
@@ -35,20 +36,7 @@ class RenameChannelForm extends Component {
   componentDidMount() {
     const field = this.name.current.getRenderedComponent();
     field.select();
-    field.addEventListener('keydown', this.handleEscPress);
   }
-
-  componentWillUnmount() {
-    const field = this.name.current.getRenderedComponent();
-    field.removeEventListener('keydown', this.handleEscPress);
-  }
-
-  handleEscPress = (e) => {
-    const { endChannelRename } = this.props;
-    if (e.key === 'Escape') {
-      endChannelRename();
-    }
-  };
 
   rename = ({ name }) => {
     const { channelRenameId, renameChannel, endChannelRename } = this.props;
@@ -66,17 +54,22 @@ class RenameChannelForm extends Component {
     endChannelRename();
   };
 
-  renderInputField = () => (
-    <Field
-      className="form-control"
-      name="name"
-      component="input"
-      type="text"
-      ref={this.name}
-      required
-      withRef
-    />
-  );
+  renderInputField = () => {
+    const { endChannelRename } = this.props;
+    return (
+      <Hotkeys keyName="esc" onKeyDown={endChannelRename}>
+        <Field
+          className="form-control"
+          name="name"
+          component="input"
+          type="text"
+          ref={this.name}
+          required
+          withRef
+        />
+      </Hotkeys>
+    );
+  };
 
   renderButtons = () => {
     const { pristine, submitting } = this.props;
