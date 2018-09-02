@@ -47,10 +47,10 @@ class RemoveChannelForm extends Component {
           <h3 className="text-center">Are you sure?</h3>
           <Form onSubmit={handleSubmit(this.remove)}>
             <FormGroup row className="justify-content-around">
-              <Button color="danger">Yes</Button>
               <Button color="success" onClick={this.cancel}>
                 No
               </Button>
+              <Button color="danger">Yes</Button>
             </FormGroup>
           </Form>
         </ModalBody>
