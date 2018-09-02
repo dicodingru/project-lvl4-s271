@@ -12,7 +12,7 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   output: {
-    path: path.resolve(__dirname, 'assets'),
+    path: path.resolve(__dirname, 'dist', 'assets'),
     filename: 'application.js',
     chunkFilename: '[name].js',
     publicPath: '/assets/'
